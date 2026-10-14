@@ -1,69 +1,235 @@
-import Image from "next/image";
+const services = [
+  {
+    title: 'Alisado de paredes',
+    description: 'Superficies perfectas, lisas y preparadas para un acabado impecable.',
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Pintura interior',
+    description: 'Colores que transforman cada estancia y dan personalidad al hogar.',
+    image:
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Reformas integrales',
+    description: 'Soluciones completas para renovar, ampliar y mejorar tu espacio.',
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Baños y cocinas',
+    description: 'Diseño funcional con acabados duraderos y elegante detalle.',
+    image:
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Suelos y revestimientos',
+    description: 'Materiales y acabados pensados para un uso diario cómodo y resistente.',
+    image:
+      'https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80',
+  },
+];
 
-export default function Home() {
+const posts = [
+  {
+    category: 'Pintura',
+    title: 'Cómo elegir el mejor color para tu hogar',
+    date: '12 Abr 2025',
+    image:
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    category: 'Reformas',
+    title: 'Errores comunes en reformas y cómo evitarlos',
+    date: '8 Abr 2025',
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    category: 'Alisado',
+    title: 'El secreto de un acabado perfecto en paredes',
+    date: '2 Abr 2025',
+    image:
+      'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80',
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <section className="hero-home" id="hero-sentinel">
+        <img
+          className="hero-photo"
+          src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+          alt="Trabajador reformando un espacio interior"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div className="hero-overlay" />
+
+        <div className="hero-content">
+          <div className="hero-copy">
+            <p className="eyebrow">Reformas integrales</p>
+            <h1>Damos vida a tus espacios</h1>
+            <p className="lead">
+              Especialistas en alisado y pintura, con una experiencia real en reformas y acabados
+              que mejoran cada rincón de tu hogar.
+            </p>
+
+            <div className="hero-actions">
+              <a href="/servicios" className="button button-primary">
+                Ver servicios
+              </a>
+              <a href="/contacto" className="button button-secondary">
+                Contactanos
+              </a>
+            </div>
+          </div>
+
+          <ul className="micro-trust" aria-label="Estadísticas de confianza">
+            <li>
+              <strong>10+</strong>
+              <span>Años de experiencia</span>
+            </li>
+            <li>
+              <strong>500+</strong>
+              <span>Proyectos realizados</span>
+            </li>
+            <li>
+              <strong>100%</strong>
+              <span>Clientes satisfechos</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="services-layout">
+        <div className="section-intro">
+          <p className="eyebrow">Nuestros servicios</p>
+          <h2>Soluciones completas para tu hogar</h2>
+        </div>
+
+        <div className="services-grid">
+          {services.map((service) => (
+            <article key={service.title} className="service-card">
+              <img src={service.image} alt={service.title} />
+              <div className="service-content">
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <a href="/servicios" aria-label={`Más información sobre ${service.title}`}>
+                  +
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-section">
+        <div className="about-visual">
+          <img
+            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+            alt="Casa reformada con grandes ventanales"
+          />
+        </div>
+
+        <div className="about-copy">
+          <p className="eyebrow">Sobre nosotros</p>
+          <h2>Experiencia, compromiso y resultados</h2>
+          <p>
+            En ReformaPro llevamos años transformando hogares y espacios comerciales con un método
+            claro, ordenado y cuidando cada detalle. Trabajamos con precisión, materiales de calidad
+            y una atención cercana desde el primer contacto.
           </p>
+
+          <div className="about-stats">
+            <div>
+              <strong>+10</strong>
+              <span>Años de experiencia</span>
+            </div>
+            <div>
+              <strong>+500</strong>
+              <span>Proyectos realizados</span>
+            </div>
+            <div>
+              <strong>100%</strong>
+              <span>Clientes satisfechos</span>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+      </section>
+
+      <section className="posts-section">
+        <div className="section-intro split">
+          <div>
+            <p className="eyebrow">Nuestro blog</p>
+            <h2>Ideas, consejos y novedades</h2>
+          </div>
+          <a href="/blog" className="text-link">
+            Ver todos los artículos →
           </a>
         </div>
-      </main>
-    </div>
+
+        <div className="posts-grid">
+          {posts.map((post) => (
+            <article key={post.title} className="post-card">
+              <div className="post-image-wrap">
+                <img src={post.image} alt={post.title} />
+                <span>{post.category}</span>
+              </div>
+              <div className="post-body">
+                <h3>{post.title}</h3>
+                <p>{post.date}</p>
+                <a href="/blog">Leer más →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-banner">
+        <div className="contact-copy">
+          <p className="eyebrow">Contacto</p>
+          <h2>¿Hablamos de tu proyecto?</h2>
+          <p>
+            Estamos encantados de ayudarte a mejorar tu hogar o negocio con una propuesta clara,
+            ajustada a tu presupuesto y llevada a cabo con profesionales.
+          </p>
+          <a href="/presupuesto" className="button button-primary">
+            Contacta ahora
+          </a>
+        </div>
+
+        <div className="contact-box">
+          <div className="contact-row">
+            <label>
+              Nombre completo
+              <input type="text" placeholder="Tu nombre" />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="tuemail@ejemplo.com" />
+            </label>
+          </div>
+          <label>
+            Tipo de servicio
+            <select defaultValue="">
+              <option value="" disabled>
+                Selecciona una opción
+              </option>
+              <option value="pintura">Pintura</option>
+              <option value="reformas">Reformas</option>
+              <option value="alisado">Alisado</option>
+            </select>
+          </label>
+          <label>
+            Mensaje
+            <textarea rows={4} placeholder="Cuéntanos tu proyecto" />
+          </label>
+          <button type="button" className="button button-primary full-width">
+            Enviar mensaje
+          </button>
+        </div>
+      </section>
+    </>
   );
 }
