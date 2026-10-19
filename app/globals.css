@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/*
+  Dirección visual "Pared recién alisada" (ver DISENO.md).
+  Yeso y blanco liso de fondo, grafito para el texto, terracota SOLO para acciones,
+  cinta de carrocero como etiqueta y la textura de gotelé que se alisa como firma.
+*/
+@theme {
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-figtree), ui-sans-serif, sans-serif;
+
+  --color-ink: #1b2327; /* grafito */
+  --color-ink-soft: #4b565b;
+  --color-paper: #f4f1ea; /* yeso */
+  --color-line: #e2dcd0;
+  --color-brand: #b4471f; /* terracota: solo acciones */
+  --color-brand-dark: #923816;
+  --color-brand-soft: #f5e4d9;
+  --color-tape: #eadba8; /* cinta de carrocero */
+  --color-wa: #15803d;
+  --color-wa-dark: #116632;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0s !important;
+    }
+  }
+}
+
+@layer components {
+  /* Textura de gotelé que se desvanece hacia la pared lisa (firma visual del hero). */
+  .gotele-fade {
+    background-image: radial-gradient(circle at center, rgb(27 35 39 / 0.09) 1.6px, transparent 2.2px),
+      radial-gradient(circle at center, rgb(27 35 39 / 0.06) 1.2px, transparent 1.8px);
+    background-size: 14px 14px, 9px 9px;
+    background-position: 0 0, 5px 7px;
+    mask-image: linear-gradient(100deg, #000 0%, rgb(0 0 0 / 0.6) 25%, transparent 55%);
+  }
+
+  /* Etiqueta tipo cinta de carrocero para antetítulos. */
+  .tape {
+    display: inline-block;
+    background: var(--color-tape);
+    color: var(--color-ink);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg);
+    clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 1% 96%, 0 50%);
+  }
+
+  /* Regla de nivel: una línea recta con marcas, para separar secciones. */
+  .level-rule {
+    height: 10px;
+    background:
+      linear-gradient(var(--color-line), var(--color-line)) bottom / 100% 2px no-repeat,
+      repeating-linear-gradient(90deg, var(--color-line) 0 2px, transparent 2px 24px) bottom / 100% 10px no-repeat;
+  }
+}

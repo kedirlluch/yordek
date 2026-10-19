@@ -1,0 +1,85 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/alisado",
+      "destination": "/alisado-de-paredes/",
+      "permanent": true
+    },
+    {
+      "source": "/alisado/",
+      "destination": "/alisado-de-paredes/",
+      "permanent": true
+    },
+    {
+      "source": "/pintura",
+      "destination": "/pintura-de-pisos/",
+      "permanent": true
+    },
+    {
+      "source": "/pintura/",
+      "destination": "/pintura-de-pisos/",
+      "permanent": true
+    },
+    {
+      "source": "/reformas",
+      "destination": "/servicios/",
+      "permanent": true
+    },
+    {
+      "source": "/reformas/",
+      "destination": "/servicios/",
+      "permanent": true
+    },
+    {
+      "source": "/presupuesto",
+      "destination": "/contacto/",
+      "permanent": true
+    },
+    {
+      "source": "/presupuesto/",
+      "destination": "/contacto/",
+      "permanent": true
+    },
+    {
+      "source": "/como-trabajamos",
+      "destination": "/nosotros/",
+      "permanent": true
+    },
+    {
+      "source": "/como-trabajamos/",
+      "destination": "/nosotros/",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/design-system",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/design-system/",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
