@@ -11,8 +11,8 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+    <header className="sticky top-0 z-40 bg-white">
+      <div className="wrap flex h-16 items-center justify-between gap-4">
         <Link href="/" aria-label={`${site.name}, inicio`}>
           <Logo />
         </Link>
@@ -23,12 +23,12 @@ export function Header() {
             <Link href="/servicios/" className="py-5 font-semibold hover:text-brand">
               Servicios <span aria-hidden="true">▾</span>
             </Link>
-            <ul className="invisible absolute left-0 top-full w-72 rounded-xl border border-line bg-white p-2 opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+            <ul className="absolute left-0 top-full hidden w-72 bg-white p-2 shadow-lg group-focus-within:block group-hover:block">
               {services.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/${s.slug}/`}
-                    className="block rounded-lg px-3 py-2 hover:bg-paper hover:text-brand"
+                    className="block px-3 py-2 hover:bg-paper hover:text-brand"
                   >
                     {s.name}
                   </Link>
@@ -47,7 +47,7 @@ export function Header() {
           <a
             href={site.phone.href}
             data-track="click_llamar"
-            className="flex items-center gap-2 text-lg font-bold text-ink hover:text-brand"
+            className="flex items-center gap-2 text-lead font-bold text-ink hover:text-brand"
           >
             <PhoneIcon className="size-5 text-brand" />
             {site.phone.display}
@@ -86,24 +86,24 @@ export function Header() {
             </summary>
             <nav
               aria-label="Menú móvil"
-              className="absolute inset-x-0 top-16 border-b border-line bg-white px-4 pb-6 pt-2 shadow-lg"
+              className="absolute inset-x-0 top-16 hidden bg-white px-4 pb-6 pt-2 group-open:block"
             >
-              <p className="pt-2 text-sm font-semibold uppercase tracking-wide text-ink-soft">
+              <p className="pt-2 text-small font-semibold text-ink-soft">
                 Servicios
               </p>
               <ul className="mt-1">
                 {services.map((s) => (
                   <li key={s.slug}>
-                    <Link href={`/${s.slug}/`} className="block py-3 text-lg font-semibold">
+                    <Link href={`/${s.slug}/`} className="block py-3 text-lead font-semibold">
                       {s.name}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <ul className="mt-2 border-t border-line pt-2">
+              <ul className="mt-4 bg-paper px-3 py-1">
                 {navLinks.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="block py-3 text-lg font-semibold">
+                    <Link href={l.href} className="block py-3 text-lead font-semibold">
                       {l.label}
                     </Link>
                   </li>

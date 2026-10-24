@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BeforeAfterGallery } from "@/components/BeforeAfter";
+import { BeforeAfterNote, BeforeAfterPairStatic, BeforeAfterSlider } from "@/components/BeforeAfter";
 import { buttonClass } from "@/components/Button";
 import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons";
+import { CurveBand } from "@/components/CurveBand";
+import { FaqList } from "@/components/FaqList";
+import { HeroTitle } from "@/components/HeroTitle";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Pendiente } from "@/components/Pendiente";
 import { Photo } from "@/components/Photo";
+import { ProcessStrip } from "@/components/ProcessStrip";
+import { ServiceIndex } from "@/components/ServiceIndex";
 import { TrustSignals } from "@/components/TrustSignals";
-import { ArrowIcon, PinIcon } from "@/components/icons";
-import { beforeAfterPairs, photos } from "@/lib/photos";
+import { CurveMark, PinIcon } from "@/components/icons";
+import { beforeAfterPairs, photos, servicePhotos } from "@/lib/photos";
 import { businessSchema, faqSchema, websiteSchema } from "@/lib/schema";
 import { processSteps, services, site } from "@/lib/site";
 
@@ -93,13 +98,10 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
 ];
 
-function SectionCta({ children }: { children: React.ReactNode }) {
-  return <div className="mt-10 flex justify-center">{children}</div>;
-}
-
 export default function HomePage() {
   // Solo preguntas con respuesta real: las que siguen [PENDIENTE] no entran en el schema.
   const schemaFaqs = faqs.flatMap((f) => (typeof f.a === "string" ? [{ q: f.q, text: f.a }] : []));
+  const [firstPair, ...otherPairs] = beforeAfter;
 
   return (
     <>
@@ -107,213 +109,215 @@ export default function HomePage() {
       <JsonLd data={websiteSchema()} />
       <JsonLd data={faqSchema(schemaFaqs)} />
 
-      {/* S1 · Hero */}
-      <section className="relative overflow-hidden bg-white">
-        <div aria-hidden="true" className="gotele-fade absolute inset-0" />
-        <div className="relative mx-auto grid max-w-6xl gap-8 px-4 pb-12 pt-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-16">
-          <div>
-            <p className="tape mb-4">Alisado y pintura · Valencia</p>
-            <h1 className="text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-              Pintores en Valencia: quitamos el gotelé y pintamos tu casa{" "}
-              <span className="whitespace-nowrap bg-[linear-gradient(transparent_62%,var(--color-tape)_62%)]">a precio cerrado</span>
-            </h1>
-            <p className="mt-4 text-lg text-ink-soft sm:text-xl">
+      {/* S1 · Hero: termina en la curva del logo, que lleva al marino de los servicios */}
+      <section className="bg-paper">
+        <div className="wrap grid gap-y-7 pb-12 pt-8 lg:grid-cols-12 lg:gap-x-10 lg:pb-20 lg:pt-16">
+          <div className="lg:col-span-7">
+            <HeroTitle main="Pintores en Valencia:" sub="quitamos el gotelé y pintamos tu casa a precio cerrado" />
+          </div>
+          <Photo
+            {...photos.homeHero}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            preload
+            className="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:self-center"
+          />
+          <div className="lg:col-span-7 lg:row-start-2">
+            <p className="max-w-[52ch]">
               Antes de tocar una pared cubrimos suelos y muebles. Cuando nos vamos, las paredes están lisas y la casa, limpia.
             </p>
-            <TrustSignals className="mt-5" />
-            <CtaButtons waMessage={WA_MESSAGE} className="mt-7" />
-            <p className="mt-4 flex items-center gap-1.5 text-ink-soft">
+            <TrustSignals className="mt-6" />
+            <CtaButtons waMessage={WA_MESSAGE} className="mt-8" />
+            <p className="mt-5 flex items-center gap-1.5 text-ink-soft">
               <PinIcon className="size-5 text-brand" />
               Trabajamos en {site.area}
             </p>
           </div>
-          <Photo {...photos.homeHero} sizes="(min-width: 1024px) 520px, 100vw" preload />
+        </div>
+        <CurveBand />
+      </section>
+
+      {/* S2 · Servicios: índice con vista previa */}
+      <section className="bg-ink pb-18 pt-6 text-white lg:pb-32 lg:pt-10">
+        <div className="wrap">
+          <ServiceIndex
+            dark
+            heading={<h2 className="head">¿Qué necesitas?</h2>}
+            items={services.map((s) => ({
+              href: `/${s.slug}/`,
+              name: s.name,
+              text: s.benefit,
+              image: servicePhotos[s.slug],
+              note: "featured" in s && s.featured ? "El más pedido" : undefined,
+            }))}
+            footer={
+              <div>
+                <p className="mb-3 text-lead font-bold">¿No sabes qué necesitas?</p>
+                <WhatsAppButton
+                  message="Hola, os mando fotos de mis paredes para que me digáis qué necesitan"
+                  label="Envíanos una foto"
+                />
+              </div>
+            }
+          />
         </div>
       </section>
 
-      {/* S2 · Servicios */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <p className="tape">Servicios</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight">¿Qué necesitas?</h2>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => {
-            const featured = "featured" in s && s.featured;
-            return (
-              <li key={s.slug} className={featured ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}>
-                <Link
-                  href={`/${s.slug}/`}
-                  className={`group flex h-full flex-col rounded-2xl border p-6 transition hover:-translate-y-0.5 hover:shadow-md ${
-                    featured ? "border-brand bg-brand text-white" : "border-line bg-white"
-                  }`}
-                >
-                  {featured && (
-                    <span className="mb-3 w-fit rounded-full bg-brand-dark px-3 py-1 text-sm font-semibold">
-                      El más pedido
-                    </span>
-                  )}
-                  <h3 className={`font-extrabold ${featured ? "text-3xl" : "text-xl"}`}>{s.name}</h3>
-                  <p className={`mt-2 ${featured ? "text-lg text-white/90" : "text-ink-soft"}`}>{s.benefit}</p>
-                  <span className={`mt-auto flex items-center gap-1 pt-4 font-bold ${featured ? "" : "text-brand"}`}>
-                    Ver servicio <ArrowIcon className="size-4 transition group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <SectionCta>
-          <div className="text-center">
-            <p className="mb-3 text-lg font-semibold">¿No sabes qué necesitas?</p>
-            <WhatsAppButton
-              message="Hola, os mando fotos de mis paredes para que me digáis qué necesitan"
-              label="Envíanos una foto"
-            />
-          </div>
-        </SectionCta>
-      </section>
-
-      {/* S3 · Antes y después (solo con fotos reales) */}
-      {beforeAfter.length > 0 && (
-        <section className="bg-white py-14 lg:py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-extrabold tracking-tight">Antes y después</h2>
-            <BeforeAfterGallery pairs={beforeAfter} />
-            <SectionCta>
-              <CallButton label="Quiero mis paredes así" />
-            </SectionCta>
+      {/* S3 · Antes y después: comparador que se arrastra (solo con fotos reales) */}
+      {firstPair && (
+        <section className="section bg-white">
+          <div className="wrap grid gap-y-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-10">
+            <h2 className="head lg:col-span-4 lg:col-start-9 lg:row-start-1">Antes y después</h2>
+            <div className="lg:col-span-7 lg:row-span-2 lg:row-start-1">
+              <BeforeAfterSlider pair={firstPair} sizes="(min-width: 1024px) 55vw, 100vw" caption={otherPairs.length > 0} />
+            </div>
+            <div className="lg:col-span-4 lg:col-start-9 lg:row-start-2">
+              <BeforeAfterNote pair={otherPairs.length ? undefined : firstPair} />
+              {otherPairs.map((p) => (
+                <div key={p.after} className="mt-8">
+                  <BeforeAfterPairStatic pair={p} sizes="(min-width: 1024px) 15vw, 45vw" />
+                </div>
+              ))}
+              <div className="mt-8">
+                <CallButton label="Quiero mis paredes así" />
+              </div>
+            </div>
           </div>
         </section>
       )}
 
-      {/* S4 · Proceso */}
-      <section className="bg-ink py-14 text-white lg:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="tape">Proceso</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Cómo trabajamos, en 4 pasos</h2>
-          <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, i) => (
-              <li key={step.title} className="rounded-2xl bg-white/5 p-6">
-                <span className="grid size-10 place-items-center rounded-full bg-brand text-lg font-extrabold">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 text-xl font-bold">{step.title}</h3>
-                <p className="mt-1 text-white/75">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-          <SectionCta>
+      {/* S4 · Proceso: del marino a la pared lisa */}
+      <section className="section">
+        <div className="wrap">
+          <h2 className="head max-w-[18ch]">Cómo trabajamos, en 4 pasos</h2>
+          <div className="mt-10 lg:mt-14">
+            <ProcessStrip steps={processSteps} />
+          </div>
+          <div className="mt-10">
             <CallButton label="Empieza por el paso 1: llámanos" />
-          </SectionCta>
+          </div>
         </div>
       </section>
 
       {/* S5 · Objeciones */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <p className="tape">Sin sorpresas</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Lo que más preocupa antes de llamar a un pintor</h2>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-          {worries.map((w) => (
-            <li key={w.title} className="rounded-2xl border border-line bg-white p-6">
-              <h3 className="text-xl font-bold">{w.title}</h3>
-              <p className="mt-2 text-ink-soft">{w.text}</p>
-            </li>
-          ))}
-        </ul>
-        <SectionCta>
-          <a href="#presupuesto" className={buttonClass()}>
-            Pedir visita y presupuesto gratis
-          </a>
-        </SectionCta>
+      <section className="section bg-white">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-6">
+            <h2 className="head">Lo que más preocupa antes de llamar a un pintor</h2>
+            <div className="mt-10 hidden lg:block">
+              <a href="#presupuesto" className={buttonClass()}>
+                Pedir visita y presupuesto gratis
+              </a>
+            </div>
+          </div>
+          <dl className="reveal grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-6">
+            {worries.map((w) => (
+              <div key={w.title}>
+                <dt className="flex items-center gap-2.5 text-lead font-extrabold">
+                  <CurveMark className="size-6 shrink-0" />
+                  {w.title}
+                </dt>
+                <dd className="mt-3">{w.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="lg:hidden">
+            <a href="#presupuesto" className={buttonClass()}>
+              Pedir visita y presupuesto gratis
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* S6 · Quiénes somos */}
-      <section className="bg-white py-14 lg:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 md:grid-cols-[280px_1fr]">
-          <Photo
-            {...photos.trabajandoCuadrada}
-            aspect="aspect-square"
-            sizes="(min-width: 768px) 280px, 240px"
-            className="w-full max-w-60 md:max-w-none"
-          />
-          <div>
-            <h2 className="text-3xl font-extrabold tracking-tight">Quiénes somos</h2>
-            <p className="mt-4 text-lg">
+      <section className="section">
+        <div className="wrap grid items-center gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="reveal lg:col-span-6">
+            <h2 className="head">Quiénes somos</h2>
+            <p className="mt-6 max-w-[40ch] text-lead">
               En {site.name} llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando casas y
               locales en Valencia.
             </p>
-            <p className="mt-3 text-lg text-ink-soft">
+            <p className="mt-4">
               <Pendiente>2 o 3 frases, en plural, sobre cómo trabajáis</Pendiente>
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <CallButton label={`Llámanos: ${site.phone.display}`} />
-              <Link href="/nosotros/" className="font-bold text-brand-dark underline">
+              <Link href="/nosotros/" className="font-bold text-brand underline">
                 Conoce YordeK
               </Link>
+            </div>
+          </div>
+          <Photo
+            {...photos.trabajandoCuadrada}
+            aspect="aspect-square"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            drift
+            className="lg:col-span-6"
+          />
+        </div>
+      </section>
+
+      {/* S7 · Precio, sin cifras: campo marino */}
+      <section className="section bg-ink text-white">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-6">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="head">¿Cuánto cuesta? De qué depende el precio</h2>
+              <p className="mt-6 max-w-[40ch] text-lead text-white/90">
+                Cada casa es distinta. Estos son los factores que cambian el precio:
+              </p>
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <ul className="reveal space-y-5">
+              {priceFactors.map((f) => (
+                <li key={f} className="flex gap-3 text-lead font-semibold">
+                  <CurveMark className="mt-1 size-6 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8">
+              <Link href="/quitar-gotele/#precio" className="font-bold text-[#e8875f] underline">
+                Ver qué influye en el precio de quitar gotelé
+              </Link>
+            </p>
+            <p className="mt-10 text-lead font-bold">Te damos el precio exacto tras una visita gratis.</p>
+            <div className="mt-5">
+              <CallButton label="Pedir visita gratis" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* S7 · Precio */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <div className="rounded-3xl bg-brand-soft p-6 sm:p-10">
-          <h2 className="text-3xl font-extrabold tracking-tight">¿Cuánto cuesta? De qué depende el precio</h2>
-          <p className="mt-3 text-lg text-ink-soft">
-            Cada casa es distinta. Estos son los factores que cambian el precio:
-          </p>
-          <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-            {priceFactors.map((f) => (
-              <li key={f} className="flex gap-2 text-lg">
-                <span aria-hidden="true" className="text-brand">●</span>
-                {f}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5">
-            <Link href="/quitar-gotele/#precio" className="font-bold text-brand-dark underline">
-              Ver qué influye en el precio de quitar gotelé
-            </Link>
-          </p>
-          <p className="mt-8 text-lg font-semibold">Te damos el precio exacto tras una visita gratis.</p>
-          <div className="mt-4">
-            <CallButton label="Pedir visita gratis" />
-          </div>
-        </div>
-      </section>
-
       {/* S8 · FAQ */}
-      <section className="bg-white py-14 lg:py-20">
-        <div className="mx-auto max-w-3xl px-4">
-          <p className="tape">Dudas</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Preguntas frecuentes</h2>
-          <div className="mt-8 divide-y divide-line border-y border-line">
-            {faqs.map((f) => (
-              <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
-                  {f.q}
-                  <span aria-hidden="true" className="text-2xl text-brand transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 text-ink-soft">{f.a}</p>
-              </details>
-            ))}
+      <section className="section bg-white">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-4">
+            <h2 className="head lg:sticky lg:top-28">Preguntas frecuentes</h2>
+          </div>
+          <div className="lg:col-span-8">
+            <FaqList faqs={faqs} onWhite />
           </div>
         </div>
       </section>
 
       {/* S9 · Formulario */}
-      <section id="presupuesto" className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Pide tu visita gratis</h2>
-            <p className="mt-3 text-lg text-ink-soft">
+      <section id="presupuesto" className="section">
+        <div className="wrap grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <h2 className="head">Pide tu visita gratis</h2>
+            <p className="mt-6 max-w-[40ch] text-lead">
               Déjanos tus datos y te llamamos. Si lo prefieres, llama o escríbenos ahora.
             </p>
-            <CtaButtons waMessage={WA_MESSAGE} className="mt-6 hidden lg:flex" />
-            <p className="mt-6 text-ink-soft">
+            <div className="mt-8 hidden lg:block">
+              <CtaButtons waMessage={WA_MESSAGE} />
+            </div>
+            <p className="mt-8 text-ink-soft">
               Horario: {site.hours.opens} – {site.hours.closes}
             </p>
           </div>
-          <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+          <div className="bg-white p-6 sm:p-10 lg:col-span-6">
             <LeadForm source="home" />
           </div>
         </div>

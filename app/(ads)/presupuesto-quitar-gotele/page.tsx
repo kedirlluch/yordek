@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AdsLanding, type AdsLandingContent } from "@/components/AdsLanding";
-import { photos } from "@/lib/photos";
+import { beforeAfterPairs, photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Quitar gotelé en Valencia · Presupuesto gratis | YordeK" },
@@ -47,6 +47,8 @@ const content: AdsLandingContent = {
     },
   ],
   finalTitle: "¿Quieres las paredes lisas? Empieza por la visita gratis",
+  beforeAfter: beforeAfterPairs[0],
+  finalImage: photos.paredLisa,
 };
 
 export default function PresupuestoGotelePage() {

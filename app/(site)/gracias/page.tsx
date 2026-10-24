@@ -13,21 +13,21 @@ export const metadata: Metadata = {
 
 export default function GraciasPage() {
   return (
-    <section className="mx-auto max-w-2xl px-4 py-16 text-center lg:py-24">
+    <section className="wrap max-w-3xl py-16 text-center lg:py-28">
       <ConversionEvent event="envio_formulario" />
 
       <span className="mx-auto grid size-16 place-items-center rounded-full bg-wa/10 text-wa">
         <CheckIcon className="size-9" />
       </span>
-      <h1 className="mt-6 text-4xl font-extrabold tracking-tight">Recibido. Te llamamos para concertar la visita</h1>
-      <p className="mt-4 text-lg text-ink-soft">
+      <h1 className="head mt-6">Recibido. Te llamamos para concertar la visita</h1>
+      <p className="mt-6 text-lead">
         Te llamamos en horario de {site.hours.opens} a {site.hours.closes}. Si ves una llamada del{" "}
         {site.phone.display} o del {site.phoneSecondary.display}, somos nosotros.
       </p>
 
-      <div className="mt-10 rounded-2xl border border-line bg-white p-6 sm:p-8">
-        <p className="text-xl font-bold">¿Es urgente?</p>
-        <p className="mt-1 text-ink-soft">
+      <div className="mt-12 bg-white p-6 sm:p-10">
+        <p className="text-lead font-bold">¿Es urgente?</p>
+        <p className="mt-1">
           Escríbenos por WhatsApp. Si nos mandas fotos de las paredes, llegamos a la visita sabiendo lo que hay.
         </p>
         <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">

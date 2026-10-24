@@ -94,16 +94,16 @@ export function CookieBanner() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookies-titulo"
-      className="fixed inset-x-2 bottom-[5.25rem] z-[60] mx-auto max-w-xl rounded-2xl border border-line bg-white p-4 shadow-2xl sm:p-5 lg:bottom-4"
+      className="fixed inset-x-2 bottom-[5.25rem] z-[60] mx-auto max-w-xl bg-white p-4 shadow-2xl sm:p-5 lg:bottom-4"
     >
-      <h2 id="cookies-titulo" className="text-lg font-bold">Cookies</h2>
-      <p className="mt-1 text-sm text-ink-soft">
+      <h2 id="cookies-titulo" className="text-lead font-bold">Cookies</h2>
+      <p className="mt-1 text-small text-ink-soft">
         Usamos cookies para medir las visitas y saber qué anuncios funcionan. Solo se activan si las aceptas.{" "}
         <Link href="/politica-de-cookies/" className="font-semibold underline">Ver la política de cookies</Link>
       </p>
 
       {details && (
-        <fieldset className="mt-4 space-y-3 text-sm">
+        <fieldset className="mt-4 space-y-3 text-small">
           <legend className="sr-only">Tipos de cookies</legend>
           <label className="flex items-start gap-3">
             <input type="checkbox" checked disabled className="mt-0.5 size-5 accent-[var(--color-brand)]" />

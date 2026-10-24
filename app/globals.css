@@ -1,24 +1,39 @@
 @import "tailwindcss";
 
 /*
-  Dirección visual "Pared recién alisada" (ver DISENO.md).
-  Yeso y blanco liso de fondo, grafito para el texto, terracota SOLO para acciones,
-  cinta de carrocero como etiqueta y la textura de gotelé que se alisa como firma.
+  Dirección visual "La curva del logo" (ver DISENO.md).
+  La curva naranja del logo, que separa el gotelé de la pared lisa, es el único motivo gráfico:
+  banda entre secciones, recorte de las fotos y viñeta de las listas.
+  Colores del logo: marino para el texto y los campos, crema de fondo, naranja solo en gráficos
+  y su versión oscura (#B04A24) en los botones, porque el naranja del logo no da contraste con texto blanco.
 */
 @theme {
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-figtree), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #1b2327; /* grafito */
-  --color-ink-soft: #4b565b;
-  --color-paper: #f4f1ea; /* yeso */
-  --color-line: #e2dcd0;
-  --color-brand: #b4471f; /* terracota: solo acciones */
-  --color-brand-dark: #923816;
-  --color-brand-soft: #f5e4d9;
-  --color-tape: #eadba8; /* cinta de carrocero */
+  --color-ink: #1e3a4c; /* marino del logo */
+  --color-ink-2: #2f5468; /* puntos del gotelé del logo */
+  --color-ink-soft: #4a5d69;
+  --color-paper: #f4efe6; /* crema del logo */
+  --color-paper-2: #eae3d6; /* un paso más oscuro, para separar superficies */
+  --color-line: #d5ccbd; /* solo bordes de campos de formulario */
+  --color-accent: #d9663b; /* naranja del logo: solo gráficos, nunca texto */
+  --color-brand: #b04a24; /* acciones: llamar, pedir visita */
+  --color-brand-dark: #923c1c;
   --color-wa: #15803d;
   --color-wa-dark: #116632;
+
+  /* Cinco tamaños de letra */
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.45;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.55;
+  --text-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-lead--line-height: 1.35;
+  --text-head: clamp(1.75rem, 1.15rem + 2.3vw, 3rem);
+  --text-head--line-height: 1.02;
+  --text-display: clamp(2.75rem, 1.2rem + 5.6vw, 6.25rem);
+  --text-display--line-height: 0.95;
 }
 
 @layer base {
@@ -30,6 +45,9 @@
   body {
     background: var(--color-paper);
     color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: 1.55;
+    font-kerning: normal;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -37,8 +55,22 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
     text-wrap: balance;
+    hyphens: none;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 0.07em;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
   }
 
   :focus-visible {
@@ -59,34 +91,119 @@
 }
 
 @layer components {
-  /* Textura de gotelé que se desvanece hacia la pared lisa (firma visual del hero). */
-  .gotele-fade {
-    background-image: radial-gradient(circle at center, rgb(27 35 39 / 0.09) 1.6px, transparent 2.2px),
-      radial-gradient(circle at center, rgb(27 35 39 / 0.06) 1.2px, transparent 1.8px);
-    background-size: 14px 14px, 9px 9px;
-    background-position: 0 0, 5px 7px;
-    mask-image: linear-gradient(100deg, #000 0%, rgb(0 0 0 / 0.6) 25%, transparent 55%);
+  /* Márgenes de página: los mismos en todas las secciones. */
+  .wrap {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 84rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
   }
 
-  /* Etiqueta tipo cinta de carrocero para antetítulos. */
-  .tape {
-    display: inline-block;
-    background: var(--color-tape);
-    color: var(--color-ink);
-    padding: 0.3rem 0.85rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transform: rotate(-1.5deg);
-    clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 1% 96%, 0 50%);
+  /* Separación entre secciones: claramente mayor que cualquier hueco interior. */
+  .section {
+    padding-block: 4.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 8rem;
+    }
   }
 
-  /* Regla de nivel: una línea recta con marcas, para separar secciones. */
-  .level-rule {
-    height: 10px;
-    background:
-      linear-gradient(var(--color-line), var(--color-line)) bottom / 100% 2px no-repeat,
-      repeating-linear-gradient(90deg, var(--color-line) 0 2px, transparent 2px 24px) bottom / 100% 10px no-repeat;
+  .display {
+    font-size: var(--text-display);
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .head {
+    font-size: var(--text-head);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  /*
+    Recorte de las fotos con la curva del logo (esquina inferior izquierda).
+    Los puntos salen de la misma curva de Bézier del logo; el trazo naranja lo dibuja <CurveCut>.
+  */
+  .curve-cut {
+    clip-path: polygon(
+      0 0, 100% 0, 100% 100%, 58% 100%, 52.8% 95.8%, 47.7% 91.9%, 42.6% 88.3%, 37.7% 85%, 32.8% 81.9%, 28% 79.2%, 23.3% 76.7%, 18.6% 74.4%, 13.9% 72.4%, 9.2% 70.7%, 4.6% 69.2%, 0% 68%
+    );
+  }
+
+  /* Índice con vista previa (components/ServiceIndex.tsx): se ve la foto de la fila señalada
+     con el ratón o el foco; si no hay ninguna, la primera. */
+  .index-frame > div {
+    opacity: 0;
+    transition: opacity 240ms ease-out;
+  }
+  .index-frame > div:first-child {
+    opacity: 1;
+  }
+  .index:has(.index-list > li:is(:hover, :focus-within)) .index-frame > div:first-child {
+    opacity: 0;
+  }
+  .index:has(.index-list > li:nth-child(1):is(:hover, :focus-within)) .index-frame > div:nth-child(1) {
+    opacity: 1 !important;
+  }
+  .index:has(.index-list > li:nth-child(2):is(:hover, :focus-within)) .index-frame > div:nth-child(2) {
+    opacity: 1 !important;
+  }
+  .index:has(.index-list > li:nth-child(3):is(:hover, :focus-within)) .index-frame > div:nth-child(3) {
+    opacity: 1 !important;
+  }
+  .index:has(.index-list > li:nth-child(4):is(:hover, :focus-within)) .index-frame > div:nth-child(4) {
+    opacity: 1 !important;
+  }
+  .index:has(.index-list > li:nth-child(5):is(:hover, :focus-within)) .index-frame > div:nth-child(5) {
+    opacity: 1 !important;
+  }
+  .index:has(.index-list > li:nth-child(6):is(:hover, :focus-within)) .index-frame > div:nth-child(6) {
+    opacity: 1 !important;
+  }
+
+  /* Elementos que entran al hacer scroll. Sin JavaScript: si el navegador no lo soporta, se ven sin más. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal > * {
+        animation: rise linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+      .reveal > :nth-child(2) {
+        animation-range: entry 6% entry 61%;
+      }
+      .reveal > :nth-child(3) {
+        animation-range: entry 12% entry 67%;
+      }
+      .reveal > :nth-child(n + 4) {
+        animation-range: entry 18% entry 73%;
+      }
+      .drift {
+        animation: drift linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 100%;
+      }
+    }
+  }
+
+  /* Solo desplazamiento, sin opacidad: el texto mantiene siempre su contraste (Lighthouse no hace scroll). */
+  @keyframes rise {
+    from {
+      transform: translateY(36px);
+    }
+  }
+
+  @keyframes drift {
+    to {
+      transform: scale(1.06) translateY(-2%);
+    }
   }
 }

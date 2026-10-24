@@ -6,18 +6,12 @@ import { site } from "@/lib/site";
 import { gtmEnabled, headScript, tracking } from "@/lib/tracking";
 import "./globals.css";
 
-const bricolage = localFont({
-  src: "./fonts/bricolage-grotesque-latin-wght.woff2",
-  weight: "200 800",
+// Una sola familia (Archivo, OFL), de corte cercano al rótulo del logo.
+const archivo = localFont({
+  src: "./fonts/archivo-latin-wght.woff2",
+  weight: "100 900",
   display: "swap",
-  variable: "--font-bricolage",
-});
-
-const figtree = localFont({
-  src: "./fonts/figtree-latin-wght.woff2",
-  weight: "300 900",
-  display: "swap",
-  variable: "--font-figtree",
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
@@ -33,12 +27,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f4efe6",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${figtree.variable} ${bricolage.variable}`}>
+    <html lang="es" className={archivo.variable}>
       <head>
         {/* Consent Mode v2 (todo denegado por defecto) y después GTM. El orden importa. */}
         <script dangerouslySetInnerHTML={{ __html: headScript() }} />

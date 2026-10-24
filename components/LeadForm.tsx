@@ -18,7 +18,7 @@ type Props = {
 };
 
 const inputClass =
-  "mt-1 block w-full rounded-lg border border-line bg-white px-3.5 py-3 text-base text-ink placeholder:text-ink-soft/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25";
+  "mt-1.5 block min-h-13 w-full border border-line bg-paper px-3.5 py-3 text-body text-ink placeholder:text-ink-soft focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/25";
 
 export function LeadForm({ defaultJobType, fixedJobType, jobOptions = jobTypes, source }: Props) {
   const router = useRouter();
@@ -124,7 +124,7 @@ export function LeadForm({ defaultJobType, fixedJobType, jobOptions = jobTypes, 
           <label htmlFor={`${source}-foto`} className="font-semibold">
             Foto <span className="font-normal text-ink-soft">(opcional)</span>
           </label>
-          <input id={`${source}-foto`} name="foto" type="file" accept="image/*" className="mt-1 block w-full text-sm" />
+          <input id={`${source}-foto`} name="foto" type="file" accept="image/*" className="mt-1 block w-full text-small" />
         </div>
       )}
 
@@ -139,7 +139,7 @@ export function LeadForm({ defaultJobType, fixedJobType, jobOptions = jobTypes, 
       <p className="text-center font-semibold">Te contactamos para concertar la visita. Sin compromiso.</p>
 
       {!form.acceptsPhoto && (
-        <p className="text-center text-sm text-ink-soft">
+        <p className="text-center text-small text-ink-soft">
           ¿Tienes fotos de las paredes?{" "}
           <a
             href={whatsappHref("Hola, os mando fotos para pedir presupuesto")}
@@ -154,14 +154,14 @@ export function LeadForm({ defaultJobType, fixedJobType, jobOptions = jobTypes, 
       )}
 
       {status === "error" && (
-        <p role="alert" className="rounded-lg bg-red-50 p-3 text-center text-red-800">
+        <p role="alert" className="bg-red-50 p-3 text-center text-red-800">
           No se ha podido enviar. Llámanos al{" "}
           <a href={site.phone.href} className="font-bold underline">{site.phone.display}</a>{" "}
           o escríbenos por WhatsApp.
         </p>
       )}
 
-      <p className="text-xs leading-relaxed text-ink-soft">
+      <p className="text-small text-ink-soft">
         Responsable: {site.name}. Usamos tus datos solo para responder a tu solicitud de presupuesto. Más
         información en la{" "}
         <Link href="/politica-de-privacidad/" className="underline">política de privacidad</Link>.

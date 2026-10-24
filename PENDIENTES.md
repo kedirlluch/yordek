@@ -17,7 +17,7 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 - [ ] Historia en 3 o 4 frases: cómo nació YordeK y por qué gotelé y pintura → /nosotros/
 
 ### Fotos reales (sin bancos de imágenes). Formatos y tamaños en FOTOS.md
-- [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de pasar a `main`. Se cambian en `lib/photos.ts`
+- [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de pasar a `v2`. Se cambian en `lib/photos.ts`. Incluye las 5 de ambiente de Unsplash añadidas el 25/10/2026 (`paredLisa`, `localCuadros`, `comedor`, `paredAzul`, `dormitorio`)
 - [ ] Hero de la Home: pared lisa recién terminada
 - [ ] Alguien de YordeK trabajando (de espaldas o sin que importe quién sea) → Home (S6) y /nosotros/
 - [ ] /quitar-gotele/ y /presupuesto-quitar-gotele/: pared a medio quitar el gotelé (mitad con gotelé, mitad lisa)
@@ -61,7 +61,7 @@ No son datos inventados (cifras, reseñas, certificados), pero describen cómo t
 - [ ] /politica-de-privacidad/: "No usamos tus datos para enviarte publicidad"
 
 ## 4. Para convertir
-- [ ] Logo y colores definitivos (ahora hay un logotipo provisional) → también `public/og.png` y `app/icon.svg`
+- [ ] `public/og.png` y `app/icon.svg` con el logo nuevo (la web ya usa sus colores desde el 25/10/2026: ver DISENO.md)
 - [ ] URL de Google Business Profile y, cuando las haya, reseñas reales que enlazar
 
 ## 5. Google Ads (ver ADS.md)

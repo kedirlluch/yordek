@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons";
+import { CurveBand } from "@/components/CurveBand";
+import { HeroTitle } from "@/components/HeroTitle";
 import { JsonLd } from "@/components/JsonLd";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Pendiente } from "@/components/Pendiente";
 import { Photo } from "@/components/Photo";
+import { ProcessStrip } from "@/components/ProcessStrip";
+import { ServiceIndex } from "@/components/ServiceIndex";
 import { TrustSignals } from "@/components/TrustSignals";
-import { CheckIcon, PinIcon } from "@/components/icons";
-import { photos } from "@/lib/photos";
+import { CurveMark, PinIcon } from "@/components/icons";
+import { photos, servicePhotos } from "@/lib/photos";
 import { breadcrumbSchema } from "@/lib/schema";
 import { processSteps, services, site } from "@/lib/site";
 
@@ -54,126 +57,119 @@ export default function NosotrosPage() {
       />
 
       {/* Quiénes somos */}
-      <section className="relative overflow-hidden bg-white">
-        <div aria-hidden="true" className="gotele-fade absolute inset-0" />
-        <div className="relative mx-auto grid max-w-6xl gap-8 px-4 pb-12 pt-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-16">
-          <div>
-            <p className="tape mb-4">Nosotros</p>
-            <h1 className="text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-              Somos {site.name}, pintores en Valencia
-            </h1>
-            <p className="mt-4 text-lg text-ink-soft sm:text-xl">
-              Llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando pisos y locales en
-              Valencia. Trabajamos siempre igual: visita gratis, precio cerrado y la casa limpia al terminar.
-            </p>
-            <TrustSignals className="mt-5" />
-            <CtaButtons waMessage={WA_MESSAGE} callLabel="Llámanos" className="mt-7" />
+      <section className="bg-paper">
+        <div className="wrap grid gap-y-7 pb-12 pt-8 lg:grid-cols-12 lg:gap-x-10 lg:pb-20 lg:pt-16">
+          <div className="lg:col-span-8 lg:self-end">
+            <HeroTitle main={`Somos ${site.name}, pintores en Valencia`} long />
           </div>
           <Photo
             {...photos.trabajandoVertical}
             aspect="aspect-[4/5]"
-            sizes="(min-width: 1024px) 448px, 100vw"
+            sizes="(min-width: 1024px) 34vw, 100vw"
             preload
-            className="w-full max-w-md lg:justify-self-end"
+            className="lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1"
           />
+          <div className="lg:col-span-7 lg:row-start-2">
+            <p className="max-w-[52ch] text-lead">
+              Llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando pisos y locales en
+              Valencia. Trabajamos siempre igual: visita gratis, precio cerrado y la casa limpia al terminar.
+            </p>
+            <TrustSignals className="mt-6" />
+            <CtaButtons waMessage={WA_MESSAGE} callLabel="Llámanos" className="mt-8" />
+          </div>
         </div>
+        <CurveBand />
       </section>
 
-      {/* Historia */}
-      <section className="mx-auto max-w-3xl px-4 py-14 lg:py-20">
-        <p className="tape">Historia</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Cómo empezó {site.name}</h2>
-        <div className="mt-6 space-y-4 text-lg">
-          <p>
-            <Pendiente>3 o 4 frases, en plural y como empresa: cómo nació YordeK y por qué os especializasteis en
-            quitar gotelé y pintar</Pendiente>
-          </p>
-        </div>
-        <div className="mt-10 flex justify-center">
-          <WhatsAppButton message={WA_MESSAGE} label="Escríbenos por WhatsApp" />
+      {/* Historia: campo marino */}
+      <section className="bg-ink pb-18 pt-6 text-white lg:pb-32 lg:pt-10">
+        <div className="wrap grid items-center gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="reveal lg:col-span-6">
+            <h2 className="head">Cómo empezó {site.name}</h2>
+            <p className="mt-6 text-lead">
+              <Pendiente>3 o 4 frases, en plural y como empresa: cómo nació YordeK y por qué os especializasteis en
+              quitar gotelé y pintar</Pendiente>
+            </p>
+            <div className="mt-10">
+              <WhatsAppButton message={WA_MESSAGE} label="Escríbenos por WhatsApp" />
+            </div>
+          </div>
+          <Photo {...photos.paredLisa} sizes="(min-width: 1024px) 45vw, 100vw" drift className="lg:col-span-6" />
         </div>
       </section>
 
       {/* Cómo trabajamos */}
-      <section className="bg-ink py-14 text-white lg:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="tape">Cómo trabajamos</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Lo que puedes esperar de nosotros</h2>
-          <ul className="mt-8 grid gap-4 md:grid-cols-3">
+      <section className="section">
+        <div className="wrap">
+          <h2 className="head max-w-[20ch]">Lo que puedes esperar de nosotros</h2>
+          <ul className="reveal mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3 lg:mt-14">
             {commitments.map((c) => (
-              <li key={c.title} className="rounded-2xl bg-white/5 p-6">
-                <h3 className="flex items-start gap-2 text-xl font-bold">
-                  <CheckIcon className="mt-1 size-5 shrink-0 text-tape" />
+              <li key={c.title}>
+                <h3 className="flex items-center gap-3 text-lead font-extrabold">
+                  <CurveMark className="size-6 shrink-0" />
                   {c.title}
                 </h3>
-                <p className="mt-2 text-white/75">{c.text}</p>
+                <p className="mt-2 pl-9">{c.text}</p>
               </li>
             ))}
           </ul>
 
-          <h3 className="mt-12 text-2xl font-bold">Los 4 pasos, de la llamada a la entrega</h3>
-          <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, i) => (
-              <li key={step.title}>
-                <span className="grid size-10 place-items-center rounded-full bg-brand text-lg font-extrabold">
-                  {i + 1}
-                </span>
-                <p className="mt-3 text-lg font-bold">{step.title}</p>
-                <p className="mt-1 text-white/75">{step.text}</p>
-              </li>
-            ))}
-          </ol>
+          <h3 className="mt-16 text-lead font-extrabold lg:mt-24">Los 4 pasos, de la llamada a la entrega</h3>
+          <div className="mt-6">
+            <ProcessStrip steps={processSteps} />
+          </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10">
             <CallButton label="Pedir mi visita gratis" />
           </div>
         </div>
       </section>
 
       {/* Qué hacemos */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <h2 className="text-3xl font-extrabold tracking-tight">En qué trabajamos</h2>
-        <p className="mt-3 text-lg text-ink-soft">
-          Paredes y techos interiores de pisos, casas, locales y oficinas.
-        </p>
-        <ul className="mt-6 flex flex-wrap gap-3">
-          {services.map((s) => (
-            <li key={s.slug}>
-              <Link
-                href={`/${s.slug}/`}
-                className="inline-block rounded-full border border-line bg-white px-4 py-2 font-semibold hover:border-brand hover:text-brand"
-              >
-                {s.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section className="section bg-white">
+        <div className="wrap">
+          <ServiceIndex
+            heading={
+              <>
+                <h2 className="head">En qué trabajamos</h2>
+                <p className="mt-6 max-w-[40ch] text-lead">
+                  Paredes y techos interiores de pisos, casas, locales y oficinas.
+                </p>
+              </>
+            }
+            items={services.map((s) => ({
+              href: `/${s.slug}/`,
+              name: s.name,
+              text: s.benefit,
+              image: servicePhotos[s.slug],
+            }))}
+          />
+        </div>
       </section>
 
       {/* Zona de trabajo */}
-      <section className="bg-white py-14 lg:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="tape">Zona de trabajo</p>
-          <h2 className="mt-3 flex items-center gap-2 text-3xl font-extrabold tracking-tight">
-            <PinIcon className="size-7 shrink-0 text-brand" />
+      <section className="section">
+        <div className="wrap grid gap-y-8 lg:grid-cols-12 lg:gap-x-10">
+          <h2 className="head flex items-start gap-3 lg:col-span-6">
+            <PinIcon className="mt-[0.15em] size-[0.8em] shrink-0 text-brand" />
             Trabajamos en {site.area}
           </h2>
-          {site.municipalities.length > 0 ? (
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {site.municipalities.map((m) => (
-                <li key={m} className="rounded-full bg-paper px-3 py-1">{m}</li>
-              ))}
-            </ul>
-          ) : (
-            <p className="mt-6 text-lg">
-              <Pendiente>lista de municipios</Pendiente>
+          <div className="lg:col-span-5 lg:col-start-8">
+            {site.municipalities.length > 0 ? (
+              <ul className="flex flex-wrap gap-2">
+                {site.municipalities.map((m) => (
+                  <li key={m} className="bg-white px-3 py-1">{m}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-lead">
+                <Pendiente>lista de municipios</Pendiente>
+              </p>
+            )}
+            <p className="mt-6 text-lead">
+              ¿No ves tu municipio? Pregúntanos por WhatsApp y te decimos si llegamos.
             </p>
-          )}
-          <p className="mt-6 text-lg text-ink-soft">
-            ¿No ves tu municipio? Pregúntanos por WhatsApp y te decimos si llegamos.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <CtaButtons waMessage="Hola, ¿trabajáis en mi zona? Estoy en " />
+            <CtaButtons waMessage="Hola, ¿trabajáis en mi zona? Estoy en " className="mt-8" />
           </div>
         </div>
       </section>

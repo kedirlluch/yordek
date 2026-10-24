@@ -1,13 +1,19 @@
 import Link from "next/link";
-import { BeforeAfterGallery, type BeforeAfterPair } from "@/components/BeforeAfter";
+import { BeforeAfterNote, BeforeAfterPairStatic, BeforeAfterSlider, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons";
+import { CurveBand } from "@/components/CurveBand";
+import { FaqList } from "@/components/FaqList";
+import { HeroTitle } from "@/components/HeroTitle";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Photo, type PhotoSrc } from "@/components/Photo";
 import { Pendiente } from "@/components/Pendiente";
+import { ProcessStrip } from "@/components/ProcessStrip";
+import { ServiceIndex } from "@/components/ServiceIndex";
 import { TrustSignals } from "@/components/TrustSignals";
-import { ArrowIcon, CheckIcon, PinIcon } from "@/components/icons";
+import { CurveMark, PinIcon } from "@/components/icons";
+import { photos, servicePhotos } from "@/lib/photos";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 import { serviceBySlug, site, type JobType, type ServiceSlug } from "@/lib/site";
 
@@ -33,6 +39,8 @@ export type ServiceContent = {
   /** Qué debe salir en la foto del hero mientras no la hay. */
   heroPhoto: string;
   heroImage?: PhotoSrc;
+  /** Foto de la sección "Qué incluye". Por defecto, una pared lisa. */
+  includesImage?: PhotoSrc;
   includes: { title: string; text: React.ReactNode }[];
   includesTitle: string;
   includesCta: string;
@@ -50,10 +58,6 @@ export type ServiceContent = {
   beforeAfter?: BeforeAfterPair[];
 };
 
-function SectionCta({ children }: { children: React.ReactNode }) {
-  return <div className="mt-10 flex flex-wrap items-center justify-center gap-3">{children}</div>;
-}
-
 export function ServicePage({ content: c }: { content: ServiceContent }) {
   const service = serviceBySlug(c.slug);
   const path = `/${c.slug}/`;
@@ -61,6 +65,7 @@ export function ServicePage({ content: c }: { content: ServiceContent }) {
     const text = typeof f.a === "string" ? f.a : f.text;
     return text ? [{ q: f.q, text }] : [];
   });
+  const [firstPair, ...otherPairs] = c.beforeAfter ?? [];
 
   return (
     <>
@@ -74,11 +79,10 @@ export function ServicePage({ content: c }: { content: ServiceContent }) {
       />
       {schemaFaqs.length > 0 && <JsonLd data={faqSchema(schemaFaqs)} />}
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-white">
-        <div aria-hidden="true" className="gotele-fade absolute inset-0" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-5 lg:pb-16">
-          <nav aria-label="Migas de pan" className="text-sm text-ink-soft">
+      {/* Hero: termina en la curva del logo */}
+      <section className="bg-paper">
+        <div className="wrap pb-12 pt-5 lg:pb-20">
+          <nav aria-label="Migas de pan" className="text-small text-ink-soft">
             <ol className="flex flex-wrap gap-1.5">
               <li>
                 <Link href="/" className="hover:text-brand">Inicio</Link> <span aria-hidden="true">›</span>
@@ -89,181 +93,194 @@ export function ServicePage({ content: c }: { content: ServiceContent }) {
               <li aria-current="page" className="font-semibold text-ink">{service.name}</li>
             </ol>
           </nav>
-          <div className="mt-6 grid gap-8 lg:mt-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-            <div>
-              <h1 className="text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-                {c.h1}
-                {c.h1Highlight && (
-                  <>
-                    {" "}
-                    <span className="bg-[linear-gradient(transparent_62%,var(--color-tape)_62%)]">{c.h1Highlight}</span>
-                  </>
-                )}
-              </h1>
-              <p className="mt-4 text-lg text-ink-soft sm:text-xl">{c.intro}</p>
-              <TrustSignals className="mt-5" />
-              <CtaButtons waMessage={c.waMessage} className="mt-7" />
-              <p className="mt-4 flex items-center gap-1.5 text-ink-soft">
+          <div className="mt-6 grid gap-y-7 lg:mt-10 lg:grid-cols-12 lg:gap-x-10">
+            <div className="lg:col-span-7">
+              <HeroTitle main={c.h1} sub={c.h1Highlight} />
+            </div>
+            {c.heroImage ? (
+              <Photo
+                {...c.heroImage}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                preload
+                className="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:self-center"
+              />
+            ) : (
+              <div className="grid aspect-[4/3] place-items-center bg-paper-2 p-6 text-center lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:self-center">
+                <Pendiente>{c.heroPhoto}</Pendiente>
+              </div>
+            )}
+            <div className="lg:col-span-7 lg:row-start-2">
+              <p className="max-w-[52ch]">{c.intro}</p>
+              <TrustSignals className="mt-6" />
+              <CtaButtons waMessage={c.waMessage} className="mt-8" />
+              <p className="mt-5 flex items-center gap-1.5 text-ink-soft">
                 <PinIcon className="size-5 text-brand" />
                 Trabajamos en {site.area}
               </p>
             </div>
-            {c.heroImage ? (
-              <Photo {...c.heroImage} sizes="(min-width: 1024px) 520px, 100vw" preload />
-            ) : (
-              <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
-                <Pendiente>{c.heroPhoto}</Pendiente>
-              </div>
-            )}
+          </div>
+        </div>
+        <CurveBand />
+      </section>
+
+      {/* Qué incluye: campo marino */}
+      <section className="bg-ink pb-18 pt-6 text-white lg:pb-32 lg:pt-10">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="head">{c.includesTitle}</h2>
+              <Photo
+                {...(c.includesImage ?? photos.paredLisa)}
+                sizes="(min-width: 1024px) 38vw, 100vw"
+                className="mt-10 hidden lg:block"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <ul className="reveal space-y-9">
+              {c.includes.map((item) => (
+                <li key={item.title}>
+                  <h3 className="flex items-center gap-3 text-lead font-extrabold">
+                    <CurveMark className="size-6 shrink-0" />
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-[52ch] pl-9 text-white/90">{item.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 pl-9">
+              <CallButton label={c.includesCta} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Qué incluye */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <p className="tape">Qué incluye</p>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight">{c.includesTitle}</h2>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {c.includes.map((item) => (
-            <li key={item.title} className="rounded-2xl border border-line bg-white p-6">
-              <h3 className="flex items-start gap-2 text-xl font-bold">
-                <CheckIcon className="mt-1 size-5 shrink-0 text-brand" />
-                {item.title}
-              </h3>
-              <p className="mt-2 text-ink-soft">{item.text}</p>
-            </li>
-          ))}
-        </ul>
-        <SectionCta>
-          <CallButton label={c.includesCta} />
-        </SectionCta>
-      </section>
-
-      {/* Proceso */}
-      <section className="bg-ink py-14 text-white lg:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="tape">Proceso</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight">{c.processTitle}</h2>
-          <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {c.steps.map((step, i) => (
-              <li key={step.title} className="rounded-2xl bg-white/5 p-6">
-                <span className="grid size-10 place-items-center rounded-full bg-brand text-lg font-extrabold">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 text-xl font-bold">{step.title}</h3>
-                <p className="mt-1 text-white/75">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-          <SectionCta>
+      {/* Proceso: del marino a la pared lisa */}
+      <section className="section">
+        <div className="wrap">
+          <h2 className="head max-w-[20ch]">{c.processTitle}</h2>
+          <div className="mt-10 lg:mt-14">
+            <ProcessStrip steps={c.steps} />
+          </div>
+          <div className="mt-10">
             <WhatsAppButton
               message={`${c.waMessage}. Os mando fotos de las paredes.`}
               label="Mándanos fotos por WhatsApp"
             />
-          </SectionCta>
+          </div>
         </div>
       </section>
 
-      {/* Antes y después (solo con fotos reales) */}
-      {c.beforeAfter && c.beforeAfter.length > 0 && (
-        <section className="bg-white py-14 lg:py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <p className="tape">Trabajos reales</p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Antes y después</h2>
-            <BeforeAfterGallery pairs={c.beforeAfter} />
-            <SectionCta>
-              <CallButton label="Quiero mis paredes así" />
-            </SectionCta>
+      {/* Antes y después: comparador que se arrastra (solo con fotos reales) */}
+      {firstPair && (
+        <section className="section bg-white">
+          <div className="wrap grid gap-y-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-10">
+            <h2 className="head lg:col-span-4 lg:col-start-9 lg:row-start-1">Antes y después</h2>
+            <div className="lg:col-span-7 lg:row-span-2 lg:row-start-1">
+              <BeforeAfterSlider pair={firstPair} sizes="(min-width: 1024px) 55vw, 100vw" caption={otherPairs.length > 0} />
+            </div>
+            <div className="lg:col-span-4 lg:col-start-9 lg:row-start-2">
+              <BeforeAfterNote pair={otherPairs.length ? undefined : firstPair} />
+              {otherPairs.map((p) => (
+                <div key={p.after} className="mt-8">
+                  <BeforeAfterPairStatic pair={p} sizes="(min-width: 1024px) 15vw, 45vw" />
+                </div>
+              ))}
+              <div className="mt-8">
+                <CallButton label="Quiero mis paredes así" />
+              </div>
+            </div>
           </div>
         </section>
       )}
 
-      {/* Precio, sin cifras */}
-      <section id="precio" className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <div className="rounded-3xl bg-brand-soft p-6 sm:p-10">
-          <h2 className="text-3xl font-extrabold tracking-tight">{c.priceTitle}</h2>
-          <p className="mt-3 text-lg text-ink-soft">{c.priceIntro}</p>
-          <dl className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
-            {c.priceFactors.map((f) => (
-              <div key={f.title}>
-                <dt className="flex gap-2 text-lg font-bold">
-                  <span aria-hidden="true" className="text-brand">●</span>
-                  {f.title}
-                </dt>
-                <dd className="mt-1 pl-5 text-ink-soft">{f.text}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-8 text-lg font-semibold">
-            En la visita lo vemos todo y te damos un presupuesto cerrado. Ese es el precio que pagas.
-          </p>
-          <div className="mt-4">
-            <CallButton label="Pedir visita gratis" />
+      {/* Precio, sin cifras: campo marino */}
+      <section id="precio" className="section bg-ink text-white">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-6">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="head">{c.priceTitle}</h2>
+              <p className="mt-6 max-w-[40ch] text-lead text-white/90">{c.priceIntro}</p>
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <dl className="reveal grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {c.priceFactors.map((f) => (
+                <div key={f.title}>
+                  <dt className="flex items-center gap-3 text-lead font-extrabold">
+                    <CurveMark className="size-6 shrink-0" />
+                    {f.title}
+                  </dt>
+                  <dd className="mt-2 pl-9 text-white/90">{f.text}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-12 text-lead font-bold">
+              En la visita lo vemos todo y te damos un presupuesto cerrado. Ese es el precio que pagas.
+            </p>
+            <div className="mt-5">
+              <CallButton label="Pedir visita gratis" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-14 lg:py-20">
-        <div className="mx-auto max-w-3xl px-4">
-          <p className="tape">Dudas</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight">{c.faqTitle}</h2>
-          <div className="mt-8 divide-y divide-line border-y border-line">
-            {c.faqs.map((f) => (
-              <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
-                  {f.q}
-                  <span aria-hidden="true" className="text-2xl text-brand transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 text-ink-soft">{f.a}</p>
-              </details>
-            ))}
+      <section className="section">
+        <div className="wrap grid gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="head">{c.faqTitle}</h2>
+              <div className="mt-10 hidden lg:block">
+                <p className="text-lead font-bold">¿Tienes otra duda? Pregúntanos.</p>
+                <CtaButtons waMessage={c.waMessage} className="mt-4" />
+              </div>
+            </div>
           </div>
-          <SectionCta>
-            <p className="w-full text-center text-lg font-semibold">¿Tienes otra duda? Pregúntanos.</p>
-            <CtaButtons waMessage={c.waMessage} />
-          </SectionCta>
+          <div className="lg:col-span-8">
+            <FaqList faqs={c.faqs} />
+          </div>
+          <div className="lg:hidden">
+            <p className="text-lead font-bold">¿Tienes otra duda? Pregúntanos.</p>
+            <CtaButtons waMessage={c.waMessage} className="mt-4" />
+          </div>
         </div>
       </section>
 
       {/* Otros servicios */}
-      <section className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-        <h2 className="text-3xl font-extrabold tracking-tight">Otros trabajos que te pueden hacer falta</h2>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-          {Object.entries(c.related).map(([slug, reason]) => (
-            <li key={slug}>
-              <Link
-                href={`/${slug}/`}
-                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <span className="text-xl font-bold">{serviceBySlug(slug as ServiceSlug).name}</span>
-                <span className="mt-1 text-ink-soft">{reason}</span>
-                <span className="mt-auto flex items-center gap-1 pt-3 font-bold text-brand">
-                  Ver servicio <ArrowIcon className="size-4 transition group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <SectionCta>
-          <a href="#presupuesto" className="font-bold text-brand underline">
-            Pedir visita y presupuesto gratis
-          </a>
-        </SectionCta>
+      <section className="section bg-white">
+        <div className="wrap">
+          <ServiceIndex
+            heading={<h2 className="head">Otros trabajos que te pueden hacer falta</h2>}
+            items={Object.entries(c.related).map(([slug, reason]) => ({
+              href: `/${slug}/`,
+              name: serviceBySlug(slug as ServiceSlug).name,
+              text: reason,
+              image: servicePhotos[slug as ServiceSlug],
+            }))}
+            footer={
+              <a href="#presupuesto" className="inline-flex min-h-11 items-center text-lead font-bold text-brand underline">
+                Pedir visita y presupuesto gratis
+              </a>
+            }
+          />
+        </div>
       </section>
 
       {/* Formulario */}
-      <section id="presupuesto" className="bg-white py-14 lg:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{c.formTitle}</h2>
-            <p className="mt-3 text-lg text-ink-soft">{c.formText}</p>
-            <CtaButtons waMessage={c.waMessage} className="mt-6 hidden lg:flex" />
-            <p className="mt-6 text-ink-soft">
+      <section id="presupuesto" className="section">
+        <div className="wrap grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <h2 className="head">{c.formTitle}</h2>
+            <p className="mt-6 max-w-[40ch] text-lead">{c.formText}</p>
+            <div className="mt-8 hidden lg:block">
+              <CtaButtons waMessage={c.waMessage} />
+            </div>
+            <p className="mt-8 text-ink-soft">
               Horario: {site.hours.opens} – {site.hours.closes}
             </p>
           </div>
-          <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm sm:p-8">
+          <div className="bg-white p-6 sm:p-10 lg:col-span-6">
             <LeadForm source={c.slug} defaultJobType={c.jobType} />
           </div>
         </div>

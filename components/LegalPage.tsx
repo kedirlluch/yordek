@@ -11,10 +11,10 @@ export function LegalPage({
   children: React.ReactNode;
 }) {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 lg:py-16">
-      <h1 className="text-4xl font-extrabold tracking-tight">{title}</h1>
-      <p className="mt-2 text-ink-soft">Última actualización: {updated}</p>
-      <div className="mt-8 space-y-4 text-lg leading-relaxed [&_a]:font-semibold [&_a]:text-brand [&_a]:underline [&_h2]:pt-6 [&_h2]:text-2xl [&_h2]:font-extrabold [&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:text-base [&_td]:border [&_td]:border-line [&_td]:p-2 [&_td]:align-top [&_th]:border [&_th]:border-line [&_th]:bg-white [&_th]:p-2 [&_th]:text-left">
+    <article className="wrap max-w-4xl py-12 lg:py-20">
+      <h1 className="head">{title}</h1>
+      <p className="mt-4 text-ink-soft">Última actualización: {updated}</p>
+      <div className="mt-10 max-w-[68ch] space-y-4 [&_a]:font-semibold [&_a]:text-brand [&_a]:underline [&_h2]:pt-6 [&_h2]:text-lead [&_h2]:font-extrabold [&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:text-small [&_td]:border [&_td]:border-line [&_td]:p-2 [&_td]:align-top [&_th]:border [&_th]:border-line [&_th]:bg-white [&_th]:p-2 [&_th]:text-left">
         {children}
       </div>
     </article>

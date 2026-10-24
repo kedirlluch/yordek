@@ -4,7 +4,8 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = [
   ...nextVitals,
   ...nextTs,
-  { ignores: [".next/**", "out/**", "next-env.d.ts"] },
+  // .claude/ guarda las skills (código de terceros); .taste-skill/, sus capturas.
+  { ignores: [".next/**", "out/**", "next-env.d.ts", ".claude/**", ".taste-skill/**"] },
 ];
 
 export default eslintConfig;

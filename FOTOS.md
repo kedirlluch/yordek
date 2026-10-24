@@ -38,6 +38,13 @@ Mientras no estén las reales, la web usa fotos de prueba **con la etiqueta amar
 | `pared-alisada-llana.jpg` | Bizarre Construction Problem | Uriel 1998 | BY | https://www.flickr.com/photos/21369563@N00/2685731700 |
 | `pared-agrietada.jpg` | Cracked wall | árticotropical | BY | https://www.flickr.com/photos/8581973@N02/521943309 |
 | `habitacion-parcheada.jpg` | Baby Room, sanded walls | Qole Pejorian | BY | https://www.flickr.com/photos/36824782@N00/120869477 |
+| `picsum-954.jpg` → `pared-lisa-hueco` | Pared blanca con hueco de escalera | Todd Quackenbush | Unsplash | https://unsplash.com/photos/JJB_K8aCPU4 |
+| `picsum-834.jpg` → `local-cuadros` | Local con cuadros en la pared | The Anchor | Unsplash | https://unsplash.com/photos/6hgsktgpfIE |
+| `picsum-625.jpg` → `comedor-luz` | Comedor luminoso | Breather | Unsplash | https://unsplash.com/photos/DEdM9Vs6s8w |
+| `picsum-1068.jpg` → `pared-azul` | Pared azul con mesa blanca | Padurariu Alexandru | Unsplash | https://unsplash.com/photos/iNmouRApXYM |
+| `picsum-691.jpg` → `dormitorio-taza` | Dormitorio con luz natural | David Mao | Unsplash | https://unsplash.com/photos/m0l5J8Lqnzo |
+
+Las cinco `picsum-*` (25/10/2026) las eligió la skill de diseño para dar ambiente mientras no haya fotos propias: solo interiores, nunca fachadas ni exteriores. Se usan en "Qué incluye" de los servicios (`paredLisa`), en /nosotros/ y en el CTA final de las landings. La licencia de Unsplash no obliga a citar, pero **tampoco son trabajos propios**: llevan la etiqueta y hay que quitarlas antes de publicar.
 
 ## Home `/`
 

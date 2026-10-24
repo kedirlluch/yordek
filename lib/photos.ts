@@ -1,5 +1,6 @@
 import type { BeforeAfterPair } from "@/components/BeforeAfter";
 import type { PhotoSrc } from "@/components/Photo";
+import type { ServiceSlug } from "@/lib/site";
 
 // Fotos de la web en un solo sitio. Las de /img/prueba/ son provisionales (salen con la etiqueta
 // "Foto de prueba"): al tener las reales, se generan con scripts/fotos.py y se cambia aquí la ruta.
@@ -15,7 +16,22 @@ export const photos = {
   landingPintura: { src: "/img/prueba/landing-pintura.webp", alt: "Habitación recién pintada" },
   trabajandoCuadrada: { src: "/img/prueba/trabajando-cuadrada.webp", alt: "Pintor de YordeK pintando una pared con rodillo" },
   trabajandoVertical: { src: "/img/prueba/trabajando-vertical.webp", alt: "Pintor de YordeK pintando una pared con rodillo" },
+  // Ambiente: interiores de banco elegidos por la skill de diseño (ver FOTOS.md). Nunca fachadas ni exteriores.
+  paredLisa: { src: "/img/prueba/pared-lisa-hueco.webp", alt: "Pared blanca y lisa con un hueco que deja ver una escalera" },
+  localCuadros: { src: "/img/prueba/local-cuadros.webp", alt: "Local con las paredes claras y cuadros colgados" },
+  comedor: { src: "/img/prueba/comedor-luz.webp", alt: "Comedor luminoso con las paredes blancas" },
+  paredAzul: { src: "/img/prueba/pared-azul.webp", alt: "Pared pintada de azul detrás de una mesa blanca" },
+  dormitorio: { src: "/img/prueba/dormitorio-taza.webp", alt: "Dormitorio con paredes blancas y luz natural" },
 } satisfies Record<string, PhotoSrc>;
+
+// Foto de cada servicio, para los índices de servicios con vista previa.
+export const servicePhotos = {
+  "quitar-gotele": photos.quitarGotele,
+  "alisado-de-paredes": photos.alisado,
+  "pintura-de-pisos": photos.pinturaPisos,
+  "pintura-de-locales-comerciales": photos.pinturaLocales,
+  "reparacion-de-paredes": photos.reparacion,
+} satisfies Record<ServiceSlug, PhotoSrc>;
 
 export const beforeAfterPairs: BeforeAfterPair[] = [
   {

@@ -47,3 +47,12 @@ export function PinIcon({ className = "size-5" }: IconProps) {
     </svg>
   );
 }
+
+/** Viñeta con la curva del logo, en el naranja del logo. */
+export function CurveMark({ className = "size-5" }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={`text-accent ${className}`}>
+      <path d="M2 6.5C7.5 7.5 12.5 10.5 18 16.5" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+    </svg>
+  );
+}

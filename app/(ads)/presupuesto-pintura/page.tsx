@@ -46,6 +46,7 @@ const content: AdsLandingContent = {
     },
   ],
   finalTitle: "¿Hablamos de tu piso o tu local?",
+  finalImage: photos.comedor,
 };
 
 export default function PresupuestoPinturaPage() {
