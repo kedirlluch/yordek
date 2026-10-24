@@ -121,7 +121,8 @@ No escribas estas palabras en ninguna página, meta ni schema. No crear páginas
 - Objetivo **Lighthouse móvil ≥ 95** en Performance, SEO, Accesibilidad y Buenas prácticas. LCP < 2,5 s, CLS < 0,1.
 - Mobile-first: la mayoría de visitas de Ads serán desde el móvil.
 - Formulario: **Web3Forms o Formspree** (funcionan con sitio estático) → aviso inmediato a kedir.lluch@icloud.com. Redirigir a `/gracias/`.
-- Hosting: Vercel (proyecto conectado al repo; `main` = producción).
+- Hosting: Vercel. **`v2` = producción** (yordek.com); `main` y `v1` = respaldo de la web antigua.
+- Flujo: nunca commit ni push directo a `v2`. Cada cambio en su rama → vista previa de Vercel → merge a `v2` revisado por el responsable.
 
 ## Medición (imprescindible para Google Ads)
 - Google Tag Manager + GA4 + etiqueta de conversión de Google Ads.

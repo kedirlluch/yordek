@@ -12,7 +12,7 @@ Huecos de imagen de la web y el formato de cada uno. Última actualización: 24/
 
 ## Fotos de prueba (ahora en la web)
 
-Mientras no estén las reales, la web usa fotos de prueba **con la etiqueta amarilla "Foto de prueba"**. **No se puede publicar en `main` con ellas**: no son trabajos propios.
+Mientras no estén las reales, la web usa fotos de prueba **con la etiqueta amarilla "Foto de prueba"**. **No deberían verse en producción (`v2`)**: no son trabajos propios.
 
 - Están en `public/img/prueba/` y se eligen en `lib/photos.ts`, un solo archivo para toda la web.
 - La del hero de la Home es la imagen que dejaste en `public/img/`. La he movido a `fotos-originales/home-hero-usuario.png` porque pesaba 5 MB. Si es un trabajo real tuyo, se puede pasar a `fotos/` y quitarle la etiqueta.

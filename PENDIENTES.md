@@ -17,7 +17,7 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 - [ ] Historia en 3 o 4 frases: cómo nació YordeK y por qué gotelé y pintura → /nosotros/
 
 ### Fotos reales (sin bancos de imágenes). Formatos y tamaños en FOTOS.md
-- [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de pasar a `main`. Se cambian en `lib/photos.ts`
+- [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de que se vean en producción (`v2`). Se cambian en `lib/photos.ts`
 - [ ] Hero de la Home: pared lisa recién terminada
 - [ ] Alguien de YordeK trabajando (de espaldas o sin que importe quién sea) → Home (S6) y /nosotros/
 - [ ] /quitar-gotele/ y /presupuesto-quitar-gotele/: pared a medio quitar el gotelé (mitad con gotelé, mitad lisa)
@@ -47,7 +47,7 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 ## 2. Configuración técnica (no se ve, pero sin ello no funciona)
 - [x] **Access key de Web3Forms** (puesta el 20/10/2026; falta la prueba real tras publicar) → `lib/site.ts` (`form.accessKey`). Crearla con el email que debe recibir las solicitudes. Sin ella el formulario muestra el error y pide llamar
 - [ ] **ID de GTM** → `lib/tracking.ts`, y pasos de GA4 y Ads en TRACKING.md
-- [x] Hosting: Vercel (rama `main` = producción; `v1` = respaldo de la web anterior)
+- [x] Hosting: Vercel (rama `v2` = producción; `main` y `v1` = respaldo de la web anterior). Cambios por rama aparte + merge a `v2`
 - [x] Dominio: yordek.com
 - [ ] ¿Adjuntar foto en el formulario? En Web3Forms es de pago. Mientras tanto se piden por WhatsApp (`form.acceptsPhoto = false`)
 
