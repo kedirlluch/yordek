@@ -79,7 +79,7 @@ Reparamos grietas, fisuras, desconchones, agujeros de tacos y golpes, y pintamos
 ## 6. Fotos (lo que más mueve la ficha mientras no haya reseñas)
 
 - **Logo** y **portada**: cuando estén (`[PENDIENTE]`). No usar la imagen provisional de la web.
-- **Responsable trabajando** (la misma de /nosotros/): da cara al negocio.
+- **Equipo trabajando** (la misma de /nosotros/): da cara al negocio sin depender de una persona concreta.
 - **Antes y después** reales de quitar gotelé: mismo encuadre, misma luz.
 - **Protección**: suelos y muebles cubiertos antes de empezar. Demuestra la promesa de limpieza.
 - **Trabajo terminado y limpio**: habitación recogida al final.

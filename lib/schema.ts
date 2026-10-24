@@ -35,7 +35,8 @@ export function businessSchema() {
     },
     areaServed,
     // openingHoursSpecification: pendiente de saber los días (PENDIENTES.md).
-    // image / logo / sameAs (Google Business Profile): pendientes.
+    logo: `${site.url}/img/yordek-google-logo.png`,
+    // image (foto real de un trabajo) y sameAs (Google Business Profile): pendientes.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Servicios de alisado y pintura",

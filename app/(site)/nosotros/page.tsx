@@ -4,15 +4,17 @@ import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons"
 import { JsonLd } from "@/components/JsonLd";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Pendiente } from "@/components/Pendiente";
+import { Photo } from "@/components/Photo";
 import { TrustSignals } from "@/components/TrustSignals";
 import { CheckIcon, PinIcon } from "@/components/icons";
+import { photos } from "@/lib/photos";
 import { breadcrumbSchema } from "@/lib/schema";
 import { processSteps, services, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Quiénes somos · Pintores en Valencia | YordeK" },
   description:
-    "Conoce a quien va a pintar tu casa: más de 6 años quitando gotelé y pintando en Valencia. Visita y presupuesto cerrado gratis. Llama o escribe.",
+    "Conoce YordeK: más de 6 años quitando gotelé, alisando y pintando en Valencia. Visita y presupuesto cerrado gratis. Llama o escribe.",
   alternates: { canonical: "/nosotros/" },
 };
 
@@ -51,25 +53,29 @@ export default function NosotrosPage() {
         ])}
       />
 
-      {/* Quién soy */}
+      {/* Quiénes somos */}
       <section className="relative overflow-hidden bg-white">
         <div aria-hidden="true" className="gotele-fade absolute inset-0" />
         <div className="relative mx-auto grid max-w-6xl gap-8 px-4 pb-12 pt-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-16">
           <div>
             <p className="tape mb-4">Nosotros</p>
             <h1 className="text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-              Quién va a pintar tu casa en Valencia
+              Somos {site.name}, pintores en Valencia
             </h1>
             <p className="mt-4 text-lg text-ink-soft sm:text-xl">
-              Soy <Pendiente>nombre</Pendiente>, responsable de {site.name}. Llevo más de {site.yearsExperience} años
-              quitando gotelé, alisando y pintando pisos y locales en Valencia.
+              Llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando pisos y locales en
+              Valencia. Trabajamos siempre igual: visita gratis, precio cerrado y la casa limpia al terminar.
             </p>
             <TrustSignals className="mt-5" />
-            <CtaButtons waMessage={WA_MESSAGE} callLabel="Llámame" className="mt-7" />
+            <CtaButtons waMessage={WA_MESSAGE} callLabel="Llámanos" className="mt-7" />
           </div>
-          <div className="grid aspect-[4/5] w-full max-w-md place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center lg:justify-self-end">
-            <Pendiente>foto real del responsable, a ser posible trabajando</Pendiente>
-          </div>
+          <Photo
+            {...photos.trabajandoVertical}
+            aspect="aspect-[4/5]"
+            sizes="(min-width: 1024px) 448px, 100vw"
+            preload
+            className="w-full max-w-md lg:justify-self-end"
+          />
         </div>
       </section>
 
@@ -79,12 +85,12 @@ export default function NosotrosPage() {
         <h2 className="mt-3 text-3xl font-extrabold tracking-tight">Cómo empezó {site.name}</h2>
         <div className="mt-6 space-y-4 text-lg">
           <p>
-            <Pendiente>3 o 4 frases: cómo empezaste en el oficio, cuándo te estableciste por tu cuenta y por qué
-            te especializaste en quitar gotelé y pintar</Pendiente>
+            <Pendiente>3 o 4 frases, en plural y como empresa: cómo nació YordeK y por qué os especializasteis en
+            quitar gotelé y pintar</Pendiente>
           </p>
         </div>
         <div className="mt-10 flex justify-center">
-          <WhatsAppButton message={WA_MESSAGE} label="Escríbeme por WhatsApp" />
+          <WhatsAppButton message={WA_MESSAGE} label="Escríbenos por WhatsApp" />
         </div>
       </section>
 

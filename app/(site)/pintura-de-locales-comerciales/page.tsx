@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Pintura de locales y oficinas en Valencia | YordeK" },
@@ -19,6 +20,7 @@ const content: ServiceContent = {
   intro:
     "Vas a abrir un negocio o a renovar el que tienes. Vemos el local gratis, te damos un precio cerrado y te decimos cuántos días necesitamos para que puedas organizar el resto.",
   heroPhoto: "foto real de un local u oficina recién pintado",
+  heroImage: photos.pinturaLocales,
 
   includesTitle: "Qué pintamos en tu local u oficina",
   includes: [

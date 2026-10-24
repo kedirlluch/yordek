@@ -4,6 +4,7 @@ import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons"
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { Photo, type PhotoSrc } from "@/components/Photo";
 import { Pendiente } from "@/components/Pendiente";
 import { TrustSignals } from "@/components/TrustSignals";
 import { ArrowIcon, CheckIcon, PinIcon } from "@/components/icons";
@@ -29,7 +30,9 @@ export type ServiceContent = {
   h1: string;
   h1Highlight?: string;
   intro: string;
+  /** Qué debe salir en la foto del hero mientras no la hay. */
   heroPhoto: string;
+  heroImage?: PhotoSrc;
   includes: { title: string; text: React.ReactNode }[];
   includesTitle: string;
   includesCta: string;
@@ -105,10 +108,13 @@ export function ServicePage({ content: c }: { content: ServiceContent }) {
                 Trabajamos en {site.area}
               </p>
             </div>
-            {/* Foto real del hero (LCP): sustituir por <Image priority> cuando llegue */}
-            <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
-              <Pendiente>{c.heroPhoto}</Pendiente>
-            </div>
+            {c.heroImage ? (
+              <Photo {...c.heroImage} sizes="(min-width: 1024px) 520px, 100vw" preload />
+            ) : (
+              <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
+                <Pendiente>{c.heroPhoto}</Pendiente>
+              </div>
+            )}
           </div>
         </div>
       </section>

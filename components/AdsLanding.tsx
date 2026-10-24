@@ -2,6 +2,7 @@ import { CtaButtons } from "@/components/CtaButtons";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { Photo, type PhotoSrc } from "@/components/Photo";
 import { Pendiente } from "@/components/Pendiente";
 import { TrustSignals } from "@/components/TrustSignals";
 import { CheckIcon, PinIcon } from "@/components/icons";
@@ -22,7 +23,9 @@ export type AdsLandingContent = {
   jobOptions?: readonly JobType[];
   includesTitle: string;
   includes: string[];
+  /** Qué debe salir en la foto mientras no la hay. */
   photo: string;
+  image?: PhotoSrc;
   faqs: { q: string; a: string }[];
   finalTitle: string;
 };
@@ -92,9 +95,13 @@ export function AdsLanding({ content: c }: { content: AdsLandingContent }) {
             Pedir visita y presupuesto gratis
           </a>
         </div>
-        <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
-          <Pendiente>{c.photo}</Pendiente>
-        </div>
+        {c.image ? (
+          <Photo {...c.image} sizes="(min-width: 1024px) 545px, 100vw" />
+        ) : (
+          <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
+            <Pendiente>{c.photo}</Pendiente>
+          </div>
+        )}
       </section>
 
       {/* FAQ breve */}

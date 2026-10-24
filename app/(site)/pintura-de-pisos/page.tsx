@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Pintores de pisos en Valencia · Presupuesto gratis | YordeK" },
@@ -20,6 +21,7 @@ const content: ServiceContent = {
   intro:
     "Pintamos paredes y techos de pisos, casas y apartamentos. Cubrimos suelos y muebles antes de abrir la primera lata y te dejamos la casa limpia al terminar.",
   heroPhoto: "foto real de un salón recién pintado",
+  heroImage: photos.pinturaPisos,
 
   includesTitle: "Qué incluye pintar tu piso con nosotros",
   includes: [

@@ -25,6 +25,12 @@
       "skillPath": "skills/cro/SKILL.md",
       "computedHash": "f1974581536c4c860a0f7da4b663e2520dfc79a065327b576b12013dd62ad45e"
     },
+    "design-taste-frontend": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "69021ac7e671c0c0d85d65b570003cef360b1c296323fa28c042884e146478ca"
+    },
     "schema": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",

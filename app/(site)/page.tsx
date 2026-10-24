@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BeforeAfterGallery } from "@/components/BeforeAfter";
 import { buttonClass } from "@/components/Button";
 import { CallButton, CtaButtons, WhatsAppButton } from "@/components/CtaButtons";
+import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-import { JsonLd } from "@/components/JsonLd";
 import { Pendiente } from "@/components/Pendiente";
+import { Photo } from "@/components/Photo";
 import { TrustSignals } from "@/components/TrustSignals";
 import { ArrowIcon, PinIcon } from "@/components/icons";
+import { beforeAfterPairs, photos } from "@/lib/photos";
 import { businessSchema, faqSchema, websiteSchema } from "@/lib/schema";
 import { processSteps, services, site } from "@/lib/site";
 
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
 const WA_MESSAGE = "Hola, quiero pedir una visita y presupuesto gratis";
 
 // Fotos reales de antes/después. Mientras esté vacío, la sección no se muestra.
-const beforeAfter: { before: string; after: string; caption: string }[] = [];
+const beforeAfter = beforeAfterPairs;
 
 const worries = [
   {
@@ -124,10 +127,7 @@ export default function HomePage() {
               Trabajamos en {site.area}
             </p>
           </div>
-          {/* Foto real del hero (LCP): sustituir por <Image priority> cuando llegue */}
-          <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-6 text-center">
-            <Pendiente>foto real de una pared lisa recién terminada</Pendiente>
-          </div>
+          <Photo {...photos.homeHero} sizes="(min-width: 1024px) 520px, 100vw" preload />
         </div>
       </section>
 
@@ -177,7 +177,7 @@ export default function HomePage() {
         <section className="bg-white py-14 lg:py-20">
           <div className="mx-auto max-w-6xl px-4">
             <h2 className="text-3xl font-extrabold tracking-tight">Antes y después</h2>
-            {/* Galería: pendiente de recibir fotos */}
+            <BeforeAfterGallery pairs={beforeAfter} />
             <SectionCta>
               <CallButton label="Quiero mis paredes así" />
             </SectionCta>
@@ -226,23 +226,29 @@ export default function HomePage() {
         </SectionCta>
       </section>
 
-      {/* S6 · Responsable */}
+      {/* S6 · Quiénes somos */}
       <section className="bg-white py-14 lg:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 md:grid-cols-[280px_1fr]">
-          <div className="grid aspect-square w-full max-w-60 place-items-center rounded-2xl border-2 border-dashed border-line bg-paper p-4 text-center md:max-w-none">
-            <Pendiente>foto del responsable</Pendiente>
-          </div>
+          <Photo
+            {...photos.trabajandoCuadrada}
+            aspect="aspect-square"
+            sizes="(min-width: 768px) 280px, 240px"
+            className="w-full max-w-60 md:max-w-none"
+          />
           <div>
-            <h2 className="text-3xl font-extrabold tracking-tight">Quién va a tu casa</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight">Quiénes somos</h2>
             <p className="mt-4 text-lg">
-              Soy <Pendiente>nombre</Pendiente>, responsable de {site.name}. Llevo más de {site.yearsExperience} años
-              quitando gotelé y pintando casas y locales en Valencia.
+              En {site.name} llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando casas y
+              locales en Valencia.
             </p>
             <p className="mt-3 text-lg text-ink-soft">
-              <Pendiente>2 o 3 frases suyas sobre cómo trabaja</Pendiente>
+              <Pendiente>2 o 3 frases, en plural, sobre cómo trabajáis</Pendiente>
             </p>
-            <div className="mt-6">
-              <CallButton label={`Llámame: ${site.phone.display}`} />
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <CallButton label={`Llámanos: ${site.phone.display}`} />
+              <Link href="/nosotros/" className="font-bold text-brand-dark underline">
+                Conoce YordeK
+              </Link>
             </div>
           </div>
         </div>

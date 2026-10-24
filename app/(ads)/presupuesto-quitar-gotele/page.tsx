@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdsLanding, type AdsLandingContent } from "@/components/AdsLanding";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Quitar gotelé en Valencia · Presupuesto gratis | YordeK" },
@@ -26,6 +27,7 @@ const content: AdsLandingContent = {
     "Limpieza al terminar",
   ],
   photo: "foto real de una pared a medio quitar el gotelé",
+  image: photos.quitarGotele,
   faqs: [
     {
       q: "¿Cuánto cuesta quitar el gotelé?",

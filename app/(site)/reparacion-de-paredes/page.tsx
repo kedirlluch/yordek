@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
+import { beforeAfterPairs, photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Reparación de grietas y paredes en Valencia | YordeK" },
@@ -20,6 +21,8 @@ const content: ServiceContent = {
   intro:
     "Fisuras en las esquinas, agujeros de tacos, golpes de muebles o pintura que se cae a trozos. Lo reparamos y dejamos la pared lista para pintar, para que el arreglo no se note.",
   heroPhoto: "foto real de una grieta antes y después de repararla",
+  heroImage: photos.reparacion,
+  beforeAfter: beforeAfterPairs.slice(1, 2),
 
   includesTitle: "Qué reparamos",
   includes: [

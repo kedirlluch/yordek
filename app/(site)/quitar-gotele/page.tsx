@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
+import { beforeAfterPairs, photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Quitar gotelé en Valencia · Presupuesto gratis | YordeK" },
@@ -21,6 +22,8 @@ const content: ServiceContent = {
   intro:
     "¿Has comprado o heredado un piso con gotelé? Vamos a verlo gratis, te damos un precio cerrado y te devolvemos la casa con las paredes lisas y limpia.",
   heroPhoto: "foto real de una pared a medio quitar el gotelé: mitad con gotelé, mitad lisa",
+  heroImage: photos.quitarGotele,
+  beforeAfter: beforeAfterPairs.slice(0, 1),
 
   includesTitle: "Todo lo que hacemos para quitar el gotelé",
   includes: [

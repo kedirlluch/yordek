@@ -10,16 +10,16 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 ### Datos del negocio
 - [ ] **Días del horario** (8:00–19:00 ¿L–V? ¿sábados?) → `lib/site.ts` (`hours.days`). Sale en el pie de **todas** las páginas, en /contacto/ y falta en el schema (`openingHoursSpecification`)
 - [ ] **Municipios** de "Valencia y alrededores" → `lib/site.ts` (`municipalities`). Sale en Home (FAQ), /nosotros/, /contacto/ y alimenta el schema `areaServed`
-- [ ] **Nombre del responsable** → Home (S6) y /nosotros/
 - [ ] **Datos fiscales**: titular (autónomo o sociedad), NIF/CIF y domicilio fiscal → `lib/site.ts` (`legal`). Salen en /aviso-legal/ y /politica-de-privacidad/
 
-### Textos del responsable
-- [ ] 2 o 3 frases sobre cómo trabaja → Home (S6)
-- [ ] Historia en 3 o 4 frases: cómo empezó, cuándo por su cuenta, por qué gotelé y pintura → /nosotros/
+### Textos sobre YordeK (en plural, como empresa: sin nombre ni «soy»)
+- [ ] 2 o 3 frases sobre cómo trabajáis → Home (S6 «Quiénes somos»)
+- [ ] Historia en 3 o 4 frases: cómo nació YordeK y por qué gotelé y pintura → /nosotros/
 
-### Fotos reales (sin bancos de imágenes)
+### Fotos reales (sin bancos de imágenes). Formatos y tamaños en FOTOS.md
+- [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de pasar a `main`. Se cambian en `lib/photos.ts`
 - [ ] Hero de la Home: pared lisa recién terminada
-- [ ] Responsable, a ser posible trabajando → Home (S6) y /nosotros/
+- [ ] Alguien de YordeK trabajando (de espaldas o sin que importe quién sea) → Home (S6) y /nosotros/
 - [ ] /quitar-gotele/ y /presupuesto-quitar-gotele/: pared a medio quitar el gotelé (mitad con gotelé, mitad lisa)
 - [ ] /alisado-de-paredes/: techo o pared alisada con luz lateral
 - [ ] /pintura-de-pisos/ y /presupuesto-pintura/: salón o habitación recién pintada

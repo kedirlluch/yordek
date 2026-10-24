@@ -20,7 +20,7 @@ Si falta un dato, usa el marcador `[PENDIENTE]` y NO lo inventes.
 | Experiencia | Más de 6 años | ✅ Usar como señal de confianza: "+6 años de experiencia" |
 | Presupuesto | Gratis, sin compromiso y con visita | ✅ Usar como mensaje principal: "Visita y presupuesto gratis" |
 | Plazo del presupuesto | En menos de 1 semana | Usar con cuidado (ver "Reglas de conversión") |
-| Responsable | `[PENDIENTE: nombre y foto]` | Sección Nosotros y bloque de confianza |
+| Presentación | En plural, como empresa («somos YordeK»): sin nombre ni primera persona del responsable, porque habrá más trabajadores | Sección Nosotros y bloque de confianza |
 
 ### Datos que NO se muestran de momento
 - **Garantía**: no mencionar en ninguna página.
@@ -87,7 +87,7 @@ No escribas estas palabras en ninguna página, meta ni schema. No crear páginas
   - "Presupuesto cerrado, sin sorpresas"
   - "Protegemos suelos y muebles y dejamos todo limpio"
   - Proceso en 4 pasos: llamas o escribes → visita gratis → presupuesto cerrado → trabajo limpio y entregado
-  - Cara y nombre reales del responsable (`[PENDIENTE]`)
+  - Fotos reales del equipo trabajando (`[PENDIENTE]`)
   - Fotos antes/después REALES de proyectos propios
   - FAQ que resuelva objeciones (precio, tiempo, polvo, si hay que vaciar la casa…)
 - **Plazos**: no prometer "presupuesto en 24 h". Usar "Te visitamos y te damos presupuesto en menos de una semana" solo en Contacto/FAQ. En titulares y CTAs usar "Visita y presupuesto gratis".

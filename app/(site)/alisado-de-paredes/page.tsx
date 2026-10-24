@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Alisado de paredes y techos en Valencia | YordeK" },
@@ -20,6 +21,7 @@ const content: ServiceContent = {
   intro:
     "Ondas que se ven al encender la luz, parches de reparaciones antiguas, capas de pintura que se levantan. Dejamos paredes y techos planos y uniformes, listos para pintar.",
   heroPhoto: "foto real de un techo o pared alisada con luz lateral",
+  heroImage: photos.alisado,
 
   includesTitle: "Qué hacemos para alisar tus paredes",
   includes: [

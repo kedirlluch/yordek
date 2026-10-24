@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdsLanding, type AdsLandingContent } from "@/components/AdsLanding";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: { absolute: "Pintores en Valencia · Presupuesto gratis | YordeK" },
@@ -25,6 +26,7 @@ const content: AdsLandingContent = {
     "Casa o local limpio al terminar",
   ],
   photo: "foto real de una habitación o local recién pintado",
+  image: photos.landingPintura,
   faqs: [
     {
       q: "¿Cuánto cuesta pintar un piso?",

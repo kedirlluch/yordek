@@ -21,7 +21,6 @@ export const site = {
   municipalities: [] as string[], // [PENDIENTE]
   hours: { opens: "08:00", closes: "19:00", days: PENDIENTE },
   yearsExperience: 6,
-  owner: { name: PENDIENTE, photo: null as string | null },
   // Datos fiscales para los legales.
   legal: {
     holder: null as string | null, // titular: autónomo (nombre y apellidos) o sociedad
