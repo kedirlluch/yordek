@@ -8,3 +8,6 @@ tsconfig.tsbuildinfo
 .claude/settings.local.json
 .vercel
 fotos-originales/
+
+# Capturas e informes de la skill de diseño
+.taste-skill/
