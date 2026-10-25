@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
+import { trackEvent } from "@/lib/tracking";
 
 // Un único listener para todos los CTA con data-track (click_llamar, click_whatsapp).
 // Así los botones siguen siendo Server Components.
@@ -15,8 +10,8 @@ export function ClickTracker() {
     function onClick(e: MouseEvent) {
       const el = (e.target as Element | null)?.closest<HTMLElement>("[data-track]");
       if (!el) return;
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
+      if (!el.dataset.track) return;
+      trackEvent({
         event: el.dataset.track,
         page_path: window.location.pathname,
         // Teléfono o WhatsApp del negocio, nunca datos del usuario.

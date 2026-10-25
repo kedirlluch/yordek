@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={archivo.variable}>
       <head>
-        {/* Consent Mode v2 (todo denegado por defecto) y después GTM. El orden importa. */}
+        {/* Consent Mode v2 (todo denegado por defecto) y después la etiqueta de Ads. El orden importa. */}
         <script dangerouslySetInnerHTML={{ __html: headScript() }} />
       </head>
       <body className="font-sans">

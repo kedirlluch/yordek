@@ -74,8 +74,8 @@ export default function PrivacidadPage() {
           Estados Unidos.
         </li>
         <li>
-          <strong>Google</strong> (Tag Manager, Analytics y Google Ads), solo si aceptas las cookies de análisis o
-          publicidad. Google LLC está adherida al Marco de Privacidad de Datos UE-EE. UU.
+          <strong>Google</strong> (Google Ads), para medir qué anuncios traen contactos. Solo guarda cookies si
+          aceptas las de publicidad. Google LLC está adherida al Marco de Privacidad de Datos UE-EE. UU.
         </li>
         <li>
           <strong>WhatsApp</strong> (Meta), si decides escribirnos por ahí. Se aplica también su propia política de

@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-// Botones principales. data-track lo recoge ClickTracker para GTM.
+// Botones principales. data-track lo recoge ClickTracker para Google Ads.
 // En móvil van en una sola fila, mitad y mitad, para que la foto del hero entre en la primera pantalla.
 export function CtaButtons({
   waMessage = DEFAULT_WA_MESSAGE,

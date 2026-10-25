@@ -1,20 +1,26 @@
 # Medición · YordeK
 
-Lo que ya está en la web y lo que tienes que hacer tú en **Google Tag Manager**, **GA4** y **Google Ads**.
-Última actualización: 19/10/2026.
+Lo que ya está en la web y lo que tienes que hacer tú en **Google Ads**.
+Última actualización: 25/10/2026.
+
+**Decisión (25/10/2026): etiqueta de Google Ads directa (gtag.js), sin Tag Manager ni GA4.** GTM y GA4 quedan descritos al final por si algún día hacen falta. Nunca las dos vías a la vez para las mismas conversiones: Ads contaría doble.
 
 ## Qué hay ya en el código
 
 | Pieza | Dónde | Qué hace |
 |---|---|---|
-| ID de GTM | `lib/tracking.ts` → `gtmId: "[GTM-ID]"` | GTM **no se carga** hasta que pongas un ID real (`GTM-XXXXXXX`) |
+| ID de Ads | `lib/tracking.ts` → `adsId: "[AW-ID]"` | La etiqueta de Ads **no se carga** hasta que haya un ID real (`AW-XXXXXXXXX`) |
+| Etiquetas de conversión | `lib/tracking.ts` → `conversions` | Una por evento. Si una sigue en `[ETIQUETA]`, ese evento no se manda a Ads |
+| ID de GTM (sin uso) | `lib/tracking.ts` → `gtmId: "[GTM-ID]"` | Dejarlo con el marcador mientras se use la etiqueta de Ads |
 | Consent Mode v2 | `<head>` de todas las páginas | Todo **denegado** por defecto, antes de que cargue GTM. Recupera la elección guardada |
 | Banner de cookies | `components/CookieBanner.tsx` | «Rechazar» y «Aceptar» con el mismo peso, «Configurar» (análisis / publicidad). Se vuelve a pedir a los 12 meses |
 | «Configurar cookies» | Pie de todas las páginas y de las landings | Vuelve a abrir el banner |
-| Clics | `components/ClickTracker.tsx` | Cualquier enlace con `data-track` envía su evento al `dataLayer` |
+| Clics | `components/ClickTracker.tsx` | Cualquier enlace con `data-track` envía su evento al `dataLayer` y su conversión a Ads (`trackEvent` en `lib/tracking.ts`) |
 | Conversión del formulario | `/gracias/` | Envía `envio_formulario` **solo** si se acaba de enviar el formulario (una recarga o una visita directa no cuentan) |
 
-Probado en Chrome a 375 px: consentimiento por defecto, rechazar, recargar, aceptar, los dos clics y la conversión de `/gracias/` (que no se repite al recargar).
+Probado el 25/10/2026 con un ID de prueba: la etiqueta carga, llamar y formulario mandan `conversion` con su `send_to` y la recarga de `/gracias/` no repite.
+
+Probado antes (19/10/2026) en Chrome a 375 px: consentimiento por defecto, rechazar, recargar, aceptar, los dos clics y la conversión de `/gracias/` (que no se repite al recargar).
 
 ## Plan de eventos
 
@@ -31,13 +37,52 @@ Sin datos personales: ningún evento lleva nombre, teléfono ni zona del cliente
 
 ---
 
-## 1. Google Tag Manager
+## 1. Google Ads: etiqueta directa
+
+### Lo que haces tú (una vez)
+1. **Herramientas › Configuración de la cuenta › Etiquetado automático**: activado.
+2. **Objetivos › Conversiones › Resumen › + Crear acción de conversión › Sitio web**. Escribe `yordek.com`, pulsa **Analizar** y baja hasta **Crear acciones de conversión manualmente con código**.
+3. Crea estas tres, una a una:
+
+| Nombre | Categoría | Valor | Recuento | Ventana clic / vista | Atribución |
+|---|---|---|---|---|---|
+| Formulario web | Enviar formulario de clientes potenciales | Mismo valor (p. ej. 1) o sin valor | **Una** | 30 días / 1 día | Basada en datos |
+| Clic en llamar | Contacto | Igual | **Una** | 30 días / 1 día | Basada en datos |
+| Clic en WhatsApp | Contacto | Igual | **Una** | 30 días / 1 día | Basada en datos |
+
+   - «Una» = un cliente que pulsa dos veces cuenta como un contacto.
+   - Al guardar cada una, elige **Usar Google tag › Instalar la etiqueta tú mismo**. Copia la línea `'send_to': 'AW-123456789/AbC-D_efG123'` de su **fragmento de evento**. **No pegues nada en la web**: pásale el ID (`AW-…`) y las tres etiquetas (lo que va detrás de la barra) a quien mantenga el código.
+4. Aparte: **+ Crear acción › Llamadas telefónicas › Llamadas desde anuncios** (duración mínima **60 s**). Mide la extensión de llamada de ADS.md y no necesita código.
+
+### Lo que se hace en el código
+- `lib/tracking.ts`: `adsId` y las tres `conversions` (`click_llamar`, `click_whatsapp`, `envio_formulario`). Volver a publicar.
+
+### Comprobación
+- **Tag Assistant** (tagassistant.google.com) con `https://yordek.com`: la etiqueta `AW-…` aparece; con el banner sin aceptar, consentimiento `denied`.
+- Pulsa Llamar, WhatsApp y envía el formulario de prueba: cada uno manda un evento `conversion` con su `send_to`.
+- **Objetivos › Conversiones › Diagnóstico** a los 2–3 días: modo de consentimiento activo y conversiones llegando.
+
+## 2. Antes de lanzar anuncios
+
+- [ ] ID de Ads y las tres etiquetas en `lib/tracking.ts`, y web publicada
+- [ ] Tag Assistant: consentimiento por defecto `denied`, las tres conversiones se disparan una vez
+- [ ] Envío real del formulario que llega al email **y** dispara la conversión del formulario
+- [ ] Llamada de prueba desde el móvil con el banner aceptado y rechazado (con rechazado no se guardan cookies, pero Google recibe la señal sin cookies)
+- [ ] Política de cookies: si se añade GA4, volver a poner sus cookies (`_ga`, `_ga_*`)
+
+---
+
+## Alternativa sin uso: Tag Manager + GA4
+
+Solo si algún día hacen falta más herramientas. Si se pasa a esto, quitar `adsId` de `lib/tracking.ts` para no contar doble.
+
+### Google Tag Manager
 
 1. Entra en [tagmanager.google.com](https://tagmanager.google.com) › **Crear cuenta** › contenedor **Web** con el dominio `yordek.com`.
 2. Copia el ID (`GTM-XXXXXXX`), pégalo en `lib/tracking.ts` y vuelve a publicar la web. **No pegues** el fragmento que te ofrece GTM: ya está en el código, después del consentimiento.
 3. **Administrar › Configuración del contenedor** › activa **Habilitar resumen de consentimiento**.
 
-### Variables (Variables › Variables definidas por el usuario › Nueva › *Variable de capa de datos*)
+#### Variables (Variables › Variables definidas por el usuario › Nueva › *Variable de capa de datos*)
 
 | Nombre en GTM | Nombre de la variable de capa de datos |
 |---|---|
@@ -46,7 +91,7 @@ Sin datos personales: ningún evento lleva nombre, teléfono ni zona del cliente
 | `DLV - form_source` | `form_source` |
 | `DLV - job_type` | `job_type` |
 
-### Activadores (Activadores › Nuevo › *Evento personalizado*)
+#### Activadores (Activadores › Nuevo › *Evento personalizado*)
 
 | Nombre | Nombre del evento |
 |---|---|
@@ -54,7 +99,7 @@ Sin datos personales: ningún evento lleva nombre, teléfono ni zona del cliente
 | `CE - click_whatsapp` | `click_whatsapp` |
 | `CE - envio_formulario` | `envio_formulario` |
 
-### Etiquetas
+#### Etiquetas
 
 | Etiqueta | Tipo | Configuración | Activador |
 |---|---|---|---|
@@ -72,7 +117,7 @@ Consentimiento: las etiquetas de Google ya traen los controles de consentimiento
    - Envía el formulario de prueba: en `/gracias/` debe dispararse `GA4 - envio_formulario`.
 5. **Enviar › Publicar** (nombre de versión: «Medición inicial»).
 
-## 2. GA4
+### GA4
 
 1. [analytics.google.com](https://analytics.google.com) › **Administrar › Crear › Propiedad** «YordeK»: zona horaria **España**, moneda **EUR**.
 2. **Flujo de datos web** `https://yordek.com`. Copia el ID de medición (`G-XXXXXXX`) en la etiqueta de Google de GTM.
@@ -84,7 +129,7 @@ Consentimiento: las etiquetas de Google ya traen los controles de consentimiento
 8. **Administrar › Vinculaciones de productos › Google Ads**: vincula la cuenta de Ads y activa la **personalización de anuncios** y el **etiquetado automático**.
 9. Comprueba en **DebugView** (con la vista previa de GTM abierta) que llegan los tres eventos con sus parámetros.
 
-## 3. Google Ads
+### Google Ads importando de GA4
 
 1. **Configuración de la cuenta › Etiquetado automático**: activado.
 2. **Objetivos › Conversiones › Resumen › + Crear acción de conversión › Importar › Propiedades de Google Analytics 4 › Web**. Marca `envio_formulario`, `click_llamar` y `click_whatsapp`.
@@ -103,15 +148,6 @@ Consentimiento: las etiquetas de Google ya traen los controles de consentimiento
 
 4. **No dupliques**: si más adelante pones también etiquetas de conversión nativas de Ads en GTM para las mismas acciones, deja como **Principal** solo una de las dos (la importada de GA4 o la nativa).
 5. **Objetivos › Conversiones › Diagnóstico** a los 2–3 días: debe decir que el **modo de consentimiento** está activo y que llegan conversiones.
-
-## 4. Antes de lanzar anuncios
-
-- [ ] ID de GTM en `lib/tracking.ts` y web publicada
-- [ ] Vista previa de GTM: consentimiento por defecto `Denied`, los tres eventos se disparan una vez
-- [ ] Envío real del formulario (con la access key de Web3Forms) que llega al email **y** dispara `envio_formulario`
-- [ ] Eventos clave marcados en GA4 y visibles en DebugView
-- [ ] Conversiones importadas en Ads, con valores y «Una» como recuento
-- [ ] Llamada de prueba desde el móvil con el banner aceptado y rechazado (con rechazado no se guardan cookies, pero Google recibe la señal sin cookies)
 
 ## Más adelante (opcional)
 

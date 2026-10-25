@@ -46,7 +46,7 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 
 ## 2. Configuración técnica (no se ve, pero sin ello no funciona)
 - [x] **Access key de Web3Forms** (puesta el 20/10/2026; falta la prueba real tras publicar) → `lib/site.ts` (`form.accessKey`). Crearla con el email que debe recibir las solicitudes. Sin ella el formulario muestra el error y pide llamar
-- [ ] **ID de GTM** → `lib/tracking.ts`, y pasos de GA4 y Ads en TRACKING.md
+- [ ] **ID de Google Ads (`AW-…`) y las 3 etiquetas de conversión** → `lib/tracking.ts`. Decidido el 25/10/2026: etiqueta de Ads directa, sin GTM. Pasos en TRACKING.md §1
 - [x] Hosting: Vercel (rama `main` = producción; `v1` = respaldo de la web anterior)
 - [x] Dominio: yordek.com
 - [ ] ¿Adjuntar foto en el formulario? En Web3Forms es de pago. Mientras tanto se piden por WhatsApp (`form.acceptsPhoto = false`)

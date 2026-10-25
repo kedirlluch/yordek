@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-// Revisar esta tabla cuando estén configurados GTM, GA4 y Google Ads.
+// Solo Google Ads (etiqueta directa). Si se añade GA4, volver a poner _ga y _ga_* (ver TRACKING.md).
 const cookies = [
   {
     name: "yordek_consent (almacenamiento local)",
@@ -18,8 +18,6 @@ const cookies = [
     type: "Técnica",
     duration: "12 meses",
   },
-  { name: "_ga", owner: "Google Analytics", purpose: "Distinguir usuarios para estadísticas de uso.", type: "Análisis", duration: "2 años" },
-  { name: "_ga_*", owner: "Google Analytics", purpose: "Mantener el estado de la sesión.", type: "Análisis", duration: "2 años" },
   { name: "_gcl_au", owner: "Google Ads", purpose: "Medir las conversiones de los anuncios.", type: "Publicidad", duration: "90 días" },
 ];
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackEvent } from "@/lib/tracking";
 
 export const LEAD_PENDING_KEY = "yordek_lead_pending";
 
@@ -16,8 +17,7 @@ export function ConversionEvent({ event }: { event: string }) {
       return;
     }
     if (!lead) return;
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    trackEvent({
       event,
       page_path: window.location.pathname,
       form_source: lead.form_source,
