@@ -39,6 +39,8 @@ SLOTS = {
     "despues-grieta": ("prueba", "prueba/pared-blanca-hornacina.jpg", 4 / 3, 0.5, 0.5),
     "antes-gotele": ("prueba", "prueba/pared-gotele.jpg", 4 / 3, 0.5, 0.5),
     "despues-gotele": ("prueba", "prueba/pared-lisa.jpg", 4 / 3, 0.5, 0.5),
+    # Generadas con IA por el cliente (ambiente, nunca como trabajo propio): sin etiqueta de prueba
+    "salon-pintado": ("generadas", "generadas/salon-pintado.png", 4 / 3, 0.55, 0.5),
     # Ambiente (picsum/Unsplash, elegidas por la skill de diseño): interiores, nunca fachadas ni exteriores
     "pared-lisa-hueco": ("prueba", "prueba/picsum-954.jpg", 4 / 3, 0.38, 0.5),
     "local-cuadros": ("prueba", "prueba/picsum-834.jpg", 4 / 3, 0.5, 0.3),

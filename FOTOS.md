@@ -46,6 +46,14 @@ Mientras no estén las reales, la web usa fotos de prueba **con la etiqueta amar
 
 Las cinco `picsum-*` (25/10/2026) las eligió la skill de diseño para dar ambiente mientras no haya fotos propias: solo interiores, nunca fachadas ni exteriores. Se usan en "Qué incluye" de los servicios (`paredLisa`), en /nosotros/ y en el CTA final de las landings. La licencia de Unsplash no obliga a citar, pero **tampoco son trabajos propios**: llevan la etiqueta y hay que quitarlas antes de publicar.
 
+## Imágenes generadas con IA (en la web, sin etiqueta de prueba)
+
+Imágenes de **ambiente** generadas por el cliente con los prompts de diseño. No son trabajos propios: nunca se usan en antes/después ni como prueba de un trabajo. Originales en `fotos-originales/generadas/` (no se suben a git); se procesan con `scripts/fotos.py` y salen en `public/img/generadas/`.
+
+| Archivo | Qué es | Dónde | Fecha |
+|---|---|---|---|
+| `salon-pintado.png` → `salon-pintado` | Salón recién pintado, suelo de terrazo (prompt 2) | Hero de `/pintura-de-pisos/` y de `/presupuesto-pintura/` | 25/10/2026 |
+
 ## Home `/`
 
 ### 1. Hero (S1, primera pantalla): pared lisa recién terminada
@@ -76,7 +84,7 @@ Mismo hueco en las cinco:
 |---|---|---|---|
 | [ ] | `/quitar-gotele/` | Una pared a medio quitar el gotelé: **mitad con gotelé y mitad lisa**. Es la foto que más vende. | `quitar-gotele-hero.webp` |
 | [ ] | `/alisado-de-paredes/` | Un techo o pared alisado **con luz que entre de lado**, para que se note que no hay ondas. | `alisado-hero.webp` |
-| [ ] | `/pintura-de-pisos/` | Un salón o dormitorio recién pintado, ordenado y con luz natural. | `pintura-pisos-hero.webp` |
+| [x] | `/pintura-de-pisos/` | Un salón o dormitorio recién pintado, ordenado y con luz natural. **Puesta una generada con IA** (`generadas/salon-pintado`); cambiarla por una real cuando la haya. | `pintura-pisos-hero.webp` |
 | [ ] | `/pintura-de-locales-comerciales/` | Un local u oficina recién pintado, sin clientes ni marcas reconocibles. | `pintura-locales-hero.webp` |
 | [ ] | `/reparacion-de-paredes/` | Una grieta o desconchón **antes y después**. Puede ser una sola foto montada mitad y mitad. | `reparacion-hero.webp` |
 

@@ -10,10 +10,11 @@ export const photos = {
   homeHero: { src: "/img/prueba/home-hero.webp", alt: "Salón con las paredes recién pintadas y el suelo protegido con papel" },
   quitarGotele: { src: "/img/prueba/quitar-gotele-hero.webp", alt: "Pared con gotelé y la parte ya alisada" },
   alisado: { src: "/img/prueba/alisado-hero.webp", alt: "Pared alisada con llana, vista con luz lateral" },
-  pinturaPisos: { src: "/img/prueba/pintura-pisos-hero.webp", alt: "Dormitorio recién pintado" },
+  // Generada con IA (ambiente, ver FOTOS.md): no es un trabajo nuestro, por eso no se usa en antes/después.
+  pinturaPisos: { src: "/img/generadas/salon-pintado.webp", alt: "Salón con las paredes recién pintadas en un tono claro" },
   pinturaLocales: { src: "/img/prueba/pintura-locales-hero.webp", alt: "Oficina con las paredes recién pintadas" },
   reparacion: { src: "/img/prueba/reparacion-hero.webp", alt: "Habitación con las grietas y agujeros reparados, lista para pintar" },
-  landingPintura: { src: "/img/prueba/landing-pintura.webp", alt: "Habitación recién pintada" },
+  landingPintura: { src: "/img/generadas/salon-pintado.webp", alt: "Salón con las paredes recién pintadas en un tono claro" },
   trabajandoCuadrada: { src: "/img/prueba/trabajando-cuadrada.webp", alt: "Pintor de YordeK pintando una pared con rodillo" },
   trabajandoVertical: { src: "/img/prueba/trabajando-vertical.webp", alt: "Pintor de YordeK pintando una pared con rodillo" },
   // Ambiente: interiores de banco elegidos por la skill de diseño (ver FOTOS.md). Nunca fachadas ni exteriores.
