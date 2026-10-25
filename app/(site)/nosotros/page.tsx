@@ -4,7 +4,6 @@ import { CurveBand } from "@/components/CurveBand";
 import { HeroTitle } from "@/components/HeroTitle";
 import { JsonLd } from "@/components/JsonLd";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-import { Pendiente } from "@/components/Pendiente";
 import { Photo } from "@/components/Photo";
 import { ProcessStrip } from "@/components/ProcessStrip";
 import { ServiceIndex } from "@/components/ServiceIndex";
@@ -81,14 +80,14 @@ export default function NosotrosPage() {
         <CurveBand />
       </section>
 
-      {/* Historia: campo marino */}
+      {/* Por qué preparamos la pared: campo marino */}
       <section className="bg-ink pb-18 pt-6 text-white lg:pb-32 lg:pt-10">
         <div className="wrap grid items-center gap-y-10 lg:grid-cols-12 lg:gap-x-10">
           <div className="reveal lg:col-span-6">
-            <h2 className="head">Cómo empezó {site.name}</h2>
+            <h2 className="head">Una buena pintura empieza por la pared</h2>
             <p className="mt-6 text-lead">
-              <Pendiente>3 o 4 frases, en plural y como empresa: cómo nació YordeK y por qué os especializasteis en
-              quitar gotelé y pintar</Pendiente>
+              No nos quedamos en pintar: hacemos todo lo necesario para que la pintura quede perfecta. Si hace falta,
+              quitamos el gotelé, alisamos y tapamos grietas y desconchones, y solo entonces damos el color.
             </p>
             <div className="mt-10">
               <WhatsAppButton message={WA_MESSAGE} label="Escríbenos por WhatsApp" />
@@ -162,9 +161,7 @@ export default function NosotrosPage() {
                 ))}
               </ul>
             ) : (
-              <p className="text-lead">
-                <Pendiente>lista de municipios</Pendiente>
-              </p>
+              <p className="text-lead">{site.coverage}.</p>
             )}
             <p className="mt-6 text-lead">
               ¿No ves tu municipio? Pregúntanos por WhatsApp y te decimos si llegamos.

@@ -9,7 +9,6 @@ import { HeroTitle } from "@/components/HeroTitle";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-import { Pendiente } from "@/components/Pendiente";
 import { Photo } from "@/components/Photo";
 import { ProcessStrip } from "@/components/ProcessStrip";
 import { ServiceIndex } from "@/components/ServiceIndex";
@@ -17,7 +16,7 @@ import { TrustSignals } from "@/components/TrustSignals";
 import { CurveMark, PinIcon } from "@/components/icons";
 import { beforeAfterPairs, photos, servicePhotos } from "@/lib/photos";
 import { businessSchema, faqSchema, websiteSchema } from "@/lib/schema";
-import { processSteps, services, site } from "@/lib/site";
+import { hoursText, processSteps, services, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Pintores en Valencia · Quitar gotelé y pintura | YordeK" },
@@ -42,7 +41,7 @@ const worries = [
   },
   {
     title: "Plazo",
-    text: <Pendiente>confirmar el compromiso de plazo, p. ej. «te decimos la fecha de inicio y los días de trabajo antes de empezar»</Pendiente>,
+    text: "Antes de empezar te damos la fecha de inicio y una estimación de los días. Si aparece algo que cambie el plazo, te lo decimos en el momento.",
   },
   {
     title: "Acabado",
@@ -69,28 +68,19 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "¿Hay que vaciar la casa?",
-    a: <Pendiente>cómo trabajáis con la casa amueblada</Pendiente>,
+    a: "Para pintar y sanear paredes, no: cubrimos los muebles y puedes seguir viviendo en casa. Si hay que lijar mucho (un gotelé grueso o paredes enteras de pasta), conviene sacar los muebles de esa habitación, porque aunque lijamos con máquina y aspirador se levanta polvo. Te lo decimos en la visita.",
   },
   {
     q: "¿Cuánto se tarda?",
-    a: (
-      <>
-        Depende de los metros y del estado de las paredes. En la visita te decimos cuántos días hacen falta.{" "}
-        <Pendiente>plazo típico, p. ej. quitar gotelé de un piso de 80 m²</Pendiente>
-      </>
-    ),
+    a: "Depende de los metros y del estado de las paredes. En la visita te damos una estimación aproximada de los días; hay detalles que solo aparecen al empezar el trabajo.",
   },
   {
     q: "¿Tengo que comprar yo la pintura?",
-    a: <Pendiente>si el presupuesto incluye materiales y pintura</Pendiente>,
+    a: "No. El presupuesto incluye los materiales y la pintura; tú solo eliges el color. Si prefieres una pintura concreta, puedes comprarla tú y la quitamos del presupuesto.",
   },
   {
     q: "¿En qué zonas trabajáis?",
-    a: (
-      <>
-        En {site.area}. <Pendiente>lista de municipios</Pendiente>
-      </>
-    ),
+    a: `En ${site.coverage}. Si no sabes si llegamos a tu municipio, pregúntanos por WhatsApp.`,
   },
   {
     q: "¿Pintáis locales y oficinas?",
@@ -234,11 +224,12 @@ export default function HomePage() {
           <div className="reveal lg:col-span-6">
             <h2 className="head">Quiénes somos</h2>
             <p className="mt-6 max-w-[40ch] text-lead">
-              En {site.name} llevamos más de {site.yearsExperience} años quitando gotelé, alisando y pintando casas y
-              locales en Valencia.
+              En {site.name} llevamos más de {site.yearsExperience} años pintando pisos, casas y locales en Valencia, y
+              preparando las paredes para que el resultado dure: quitamos el gotelé, alisamos y reparamos.
             </p>
             <p className="mt-4">
-              <Pendiente>2 o 3 frases, en plural, sobre cómo trabajáis</Pendiente>
+              Tú solo eliges el color. Vamos a verlo antes de darte presupuesto, protegemos suelos y muebles y lo dejamos
+              todo limpio al terminar.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <CallButton label={`Llámanos: ${site.phone.display}`} />
@@ -314,7 +305,9 @@ export default function HomePage() {
               <CtaButtons waMessage={WA_MESSAGE} />
             </div>
             <p className="mt-8 text-ink-soft">
-              Horario: {site.hours.opens} – {site.hours.closes}
+              {hoursText}.
+              <br />
+              {site.hours.flexible}.
             </p>
           </div>
           <div className="bg-white p-6 sm:p-10 lg:col-span-6">

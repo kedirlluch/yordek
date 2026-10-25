@@ -138,7 +138,7 @@ export function AdsLanding({ content: c }: { content: AdsLandingContent }) {
           <div className="reveal lg:col-span-6">
             <h2 className="head">{c.finalTitle}</h2>
             <p className="mt-6 max-w-[44ch] text-lead">
-              Llámanos o escríbenos de {site.hours.opens} a {site.hours.closes}. La visita y el presupuesto son gratis.
+              Llámanos o escríbenos {site.hours.days}, de {site.hours.opens.replace(/^0/, "")} a {site.hours.closes}; el fin de semana, con cita por WhatsApp. La visita y el presupuesto son gratis.
             </p>
             <CtaButtons waMessage={c.waMessage} className="mt-8" />
           </div>

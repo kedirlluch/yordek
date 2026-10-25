@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
 import { photos } from "@/lib/photos";
 
@@ -136,7 +135,7 @@ const content: ServiceContent = {
     },
     {
       q: "¿Podéis alisar solo una pared o una habitación?",
-      a: <Pendiente>si hay trabajo mínimo</Pendiente>,
+      a: "Sí. Para trabajos pequeños, mándanos fotos por WhatsApp y te decimos si podemos ir y cuándo.",
     },
   ],
 

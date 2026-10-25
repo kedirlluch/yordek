@@ -15,7 +15,7 @@ import { TrustSignals } from "@/components/TrustSignals";
 import { CurveMark, PinIcon } from "@/components/icons";
 import { photos, servicePhotos } from "@/lib/photos";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
-import { serviceBySlug, site, type JobType, type ServiceSlug } from "@/lib/site";
+import { hoursText, serviceBySlug, site, type JobType, type ServiceSlug } from "@/lib/site";
 
 // Plantilla común de las páginas de servicio. El texto vive en cada page.tsx
 // para que cada página tenga contenido propio.
@@ -277,7 +277,9 @@ export function ServicePage({ content: c }: { content: ServiceContent }) {
               <CtaButtons waMessage={c.waMessage} />
             </div>
             <p className="mt-8 text-ink-soft">
-              Horario: {site.hours.opens} – {site.hours.closes}
+              {hoursText}.
+              <br />
+              {site.hours.flexible}.
             </p>
           </div>
           <div className="bg-white p-6 sm:p-10 lg:col-span-6">

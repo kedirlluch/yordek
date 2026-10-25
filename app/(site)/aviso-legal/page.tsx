@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LegalData, LegalPage } from "@/components/LegalPage";
+import { LegalRow, LegalPage } from "@/components/LegalPage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -19,9 +19,9 @@ export default function AvisoLegalPage() {
         Comercio Electrónico (LSSI-CE), estos son los datos del titular de {site.url.replace("https://", "")}:
       </p>
       <ul>
-        <li>Titular: <LegalData value={legal.holder} label="nombre y apellidos o razón social" /></li>
-        <li>NIF/CIF: <LegalData value={legal.taxId} label="NIF o CIF" /></li>
-        <li>Domicilio: <LegalData value={legal.address} label="domicilio fiscal" /></li>
+        <LegalRow name="Titular" value={legal.holder} label="nombre y apellidos o razón social" />
+        <LegalRow name="NIF/CIF" value={legal.taxId} label="NIF o CIF" />
+        <LegalRow name="Domicilio" value={legal.address} label="domicilio fiscal" />
         {legal.registry !== null && <li>Datos registrales: {legal.registry}</li>}
         <li>Nombre comercial: {site.name}</li>
         <li>Teléfono: <a href={site.phone.href} data-track="click_llamar">{site.phone.display}</a></li>

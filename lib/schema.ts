@@ -6,6 +6,7 @@ const businessId = `${site.url}/#negocio`;
 // Negocio de zona de servicio: dirección solo con localidad (sin calle) y zona en areaServed.
 const areaServed = [
   { "@type": "City", name: "Valencia" },
+  { "@type": "AdministrativeArea", name: "Área metropolitana de Valencia" },
   ...site.municipalities.map((name) => ({ "@type": "City", name })),
 ];
 
@@ -34,7 +35,13 @@ export function businessSchema() {
       addressCountry: "ES",
     },
     areaServed,
-    // openingHoursSpecification: pendiente de saber los días (PENDIENTES.md).
+    // Solo el horario fijo: fines de semana y otras horas van con cita previa por WhatsApp.
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: site.hours.schemaDays,
+      opens: site.hours.opens,
+      closes: site.hours.closes,
+    },
     logo: `${site.url}/img/yordek-google-logo.png`,
     // image (foto real de un trabajo) y sameAs (Google Business Profile): pendientes.
     hasOfferCatalog: {

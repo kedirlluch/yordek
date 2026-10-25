@@ -8,13 +8,13 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 ## 1. Visibles en la web: bloquean la publicación
 
 ### Datos del negocio
-- [ ] **Días del horario** (8:00–19:00 ¿L–V? ¿sábados?) → `lib/site.ts` (`hours.days`). Sale en el pie de **todas** las páginas, en /contacto/ y falta en el schema (`openingHoursSpecification`)
-- [ ] **Municipios** de "Valencia y alrededores" → `lib/site.ts` (`municipalities`). Sale en Home (FAQ), /nosotros/, /contacto/ y alimenta el schema `areaServed`
-- [ ] **Datos fiscales**: titular (autónomo o sociedad), NIF/CIF y domicilio fiscal → `lib/site.ts` (`legal`). Salen en /aviso-legal/ y /politica-de-privacidad/
+- [x] **Horario**: L–V 8:00–19:00; sábados, domingos u otras horas con cita previa por WhatsApp (25/10/2026) → `lib/site.ts` (`hours`)
+- [x] **Zona**: Valencia ciudad y toda su área metropolitana, sin lista cerrada (25/10/2026) → `lib/site.ts` (`coverage`)
+- [ ] **Datos fiscales**: titular (autónomo o sociedad), NIF/CIF y domicilio fiscal → `lib/site.ts` (`legal`). Salen en /aviso-legal/ y /politica-de-privacidad/. **Decisión 25/10/2026:** de momento no hay titular fiscal (ni autónomo ni sociedad); en producción esas filas no se muestran, en local y previews sale el marcador. La LSSI (art. 10) pide estos datos a cualquier web con actividad económica: rellenarlos en cuanto haya titular
 
 ### Textos sobre YordeK (en plural, como empresa: sin nombre ni «soy»)
-- [ ] 2 o 3 frases sobre cómo trabajáis → Home (S6 «Quiénes somos»)
-- [ ] Historia en 3 o 4 frases: cómo nació YordeK y por qué gotelé y pintura → /nosotros/
+- [x] 2 o 3 frases sobre cómo trabajáis → Home (S6 «Quiénes somos»), puestas el 25/10/2026 con la pintura por delante
+- [x] Historia → /nosotros/: decidido no contar el origen (25/10/2026); la sección habla de preparar la pared antes de pintar
 
 ### Fotos reales (sin bancos de imágenes). Formatos y tamaños en FOTOS.md
 - [ ] **Quitar las fotos de prueba** (`public/img/prueba/`, etiqueta "Foto de prueba") antes de pasar a `v2`. Se cambian en `lib/photos.ts`. Incluye las 5 de ambiente de Unsplash añadidas el 25/10/2026 (`paredLisa`, `localCuadros`, `comedor`, `paredAzul`, `dormitorio`)
@@ -28,19 +28,19 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 - [ ] Pares antes/después (mín. 4–6) → `beforeAfter` en Home y en cada servicio. Sin ellos esa sección no se muestra (no bloquea)
 
 ### Cómo trabajáis (FAQ y procesos)
-- [ ] **Método para quitar el gotelé**: ¿rascado, tendido de pasta encima o según el caso? → /quitar-gotele/ (paso 3 del proceso y FAQ)
-- [ ] ¿Quitáis el gotelé de los **techos**? ¿Algún tipo de gotelé que no se haga? → /quitar-gotele/ FAQ
-- [ ] **Casa amueblada**: ¿se trabaja con la casa habitada? ¿Hay que vaciar habitaciones? → Home FAQ, /quitar-gotele/ FAQ, /pintura-de-pisos/ FAQ
-- [ ] **Plazos típicos**: quitar gotelé de un piso de 80 m² y pintar un piso de 3 habitaciones → Home FAQ, /quitar-gotele/ FAQ, /pintura-de-pisos/ FAQ
-- [ ] **Compromiso de plazo** que se puede prometer → Home (S5 "Plazo")
-- [ ] ¿El presupuesto **incluye materiales y pintura**? → Home FAQ
-- [ ] ¿Hay **trabajo mínimo**? → /alisado-de-paredes/ FAQ, /reparacion-de-paredes/ FAQ
-- [ ] Locales: ¿se trabaja **fuera del horario** de apertura, en fin de semana o **por zonas con el negocio abierto**? → /pintura-de-locales-comerciales/ (proceso y 2 FAQ)
-- [ ] ¿Se reparan **humedades**? → /reparacion-de-paredes/ FAQ
+- [x] **Método para quitar el gotelé**: según el estado de la pared y el acabado (pasta encima o quitarlo todo), sin detalles técnicos (25/10/2026)
+- [x] Techos: sí, paredes y techos, cualquier tipo de gotelé (25/10/2026)
+- [x] **Casa amueblada**: se puede vivir en casa; si hay que lijar mucho, sacar los muebles de esa habitación (25/10/2026)
+- [x] **Plazos típicos**: sin cifras; estimación aproximada en la visita (25/10/2026)
+- [x] **Compromiso de plazo**: fecha de inicio y estimación de días; aviso si algo cambia (25/10/2026)
+- [x] Materiales y pintura: incluidos; si el cliente compra la pintura, se quita del presupuesto (25/10/2026)
+- [x] Trabajo mínimo: trabajos pequeños, primero fotos por WhatsApp (25/10/2026)
+- [x] Locales: fuera de horario y fin de semana con cita, y por zonas con el negocio abierto (25/10/2026)
+- [x] Humedades: reparamos el daño; el origen lo tiene que solucionar otro antes (25/10/2026)
 
 ### Legales
-- [ ] Privacidad: plazo de conservación de solicitudes no contratadas (p. ej. 12 meses)
-- [ ] Privacidad: ubicación de los servidores de Web3Forms y mecanismo de transferencia internacional
+- [x] Privacidad: solicitudes no contratadas, máximo 12 meses (25/10/2026)
+- [ ] Privacidad: Web3Forms tiene los servidores en EE. UU. (su FAQ: «US-East Region»; ya puesto en la web el 25/10/2026). Falta confirmar el mecanismo de transferencia: firmar su DPA (web3forms.com/dpa, v1.0 del 13/07/2026) y comprobar si incluye cláusulas contractuales tipo. Ojo: su FAQ dice que no guarda envíos, pero su política de julio de 2026 parece decir que los guarda hasta 3 años
 - [ ] Privacidad: confirmar el mecanismo de transferencia internacional de Vercel (EE. UU.)
 - [ ] Revisión de aviso legal, privacidad y cookies por un profesional
 
@@ -53,12 +53,13 @@ Revisión del 20/10/2026: 37 marcadores distintos visibles en la web.
 
 ## 3. Frases que he redactado sin un dato tuyo: confirmar o quitar
 No son datos inventados (cifras, reseñas, certificados), pero describen cómo trabajas y no me lo has confirmado:
-- [ ] /quitar-gotele/: "Quitar gotelé es el trabajo que más polvo levanta de los que hacemos"
-- [ ] /pintura-de-pisos/: "Primero techos y después paredes" y "Recorremos el piso contigo… hablamos de colores"
-- [ ] /pintura-de-locales-comerciales/: "Dinos el código de color o tráenos una muestra y lo pintamos igual" (y la misma idea en su FAQ y en ADS.md)
-- [ ] /reparacion-de-paredes/: "Si vemos que una grieta puede venir de un problema del edificio, te lo diremos antes de taparla"
-- [ ] /gracias/: "Si ves una llamada del 699 64 52 65 o del 642 76 02 70, somos nosotros" (¿llamáis siempre desde esos números?)
-- [ ] /politica-de-privacidad/: "No usamos tus datos para enviarte publicidad"
+- [x] /quitar-gotele/: "Quitar gotelé es el trabajo que más polvo levanta de los que hacemos" (confirmado 25/10/2026)
+- [x] /pintura-de-pisos/: quitado "Primero techos y después paredes" (no hace falta explicarlo); se queda "hablamos de colores" (25/10/2026)
+- [x] /pintura-de-locales-comerciales/: suavizado a "buscamos la pintura que más se acerque" (25/10/2026). En ADS.md se queda "con los colores de tu marca"
+- [x] /reparacion-de-paredes/: grietas estructurales o por causas externas vuelven si no se arregla el origen (confirmado 25/10/2026)
+- [x] /nosotros/: "No nos quedamos en pintar: hacemos todo lo necesario para que la pintura quede perfecta…" (confirmado 25/10/2026)
+- [x] /gracias/: "Si ves una llamada del 699 64 52 65 o del 642 76 02 70, somos nosotros" (¿llamáis siempre desde esos números?) (confirmado 25/10/2026)
+- [x] /politica-de-privacidad/: "No usamos tus datos para enviarte publicidad" (confirmado 25/10/2026)
 
 ## 4. Para convertir
 - [ ] `public/og.png` y `app/icon.svg` con el logo nuevo (la web ya usa sus colores desde el 25/10/2026: ver DISENO.md)
@@ -78,5 +79,5 @@ No son datos inventados (cifras, reseñas, certificados), pero describen cómo t
 
 ## 7. Menores
 - [ ] ¿Versión en valenciano? (recomendado: no, de momento)
-- [ ] ¿El 699 64 52 65 es WhatsApp Business? Activar el mensaje de bienvenida
-- [ ] ¿Email del formulario definitivo (iCloud) o `info@yordek.com`?
+- [ ] El 699 64 52 65 es WhatsApp normal (25/10/2026): pasarlo a WhatsApp Business y activar mensajes de bienvenida y fuera de horario (encaja con el horario flexible con cita)
+- [x] Email del formulario: se queda el de iCloud (25/10/2026)

@@ -18,8 +18,17 @@ export const site = {
   whatsappNumber: "34699645265",
   email: "kedir.lluch@icloud.com",
   area: "Valencia y alrededores",
-  municipalities: [] as string[], // [PENDIENTE]
-  hours: { opens: "08:00", closes: "19:00", days: PENDIENTE },
+  // Sin lista cerrada de municipios: toda el área metropolitana.
+  coverage: "Valencia ciudad y toda su área metropolitana",
+  municipalities: [] as string[],
+  hours: {
+    opens: "08:00",
+    closes: "19:00",
+    days: "de lunes a viernes",
+    schemaDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    // Fuera de ese horario se trabaja con cita: primero hay que escribir por WhatsApp.
+    flexible: "Sábados, domingos u otras horas, con cita previa por WhatsApp",
+  },
   yearsExperience: 6,
   // Datos fiscales para los legales.
   legal: {
@@ -32,6 +41,9 @@ export const site = {
 
 export const DEFAULT_WA_MESSAGE =
   "Hola, quiero pedir una visita y presupuesto gratis";
+
+/** «De lunes a viernes, de 8:00 a 19:00» */
+export const hoursText = `${site.hours.days.charAt(0).toUpperCase()}${site.hours.days.slice(1)}, de ${site.hours.opens.replace(/^0/, "")} a ${site.hours.closes}`;
 
 export function whatsappHref(message: string = DEFAULT_WA_MESSAGE) {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieBanner";
 import { CurveBand } from "@/components/CurveBand";
 import { Logo } from "@/components/Logo";
-import { services, site } from "@/lib/site";
+import { hoursText, services, site } from "@/lib/site";
 
 const legal = [
   { href: "/aviso-legal/", label: "Aviso legal" },
@@ -21,9 +21,8 @@ export function Footer() {
               <Logo light />
             </div>
             <p className="mt-3">Alisado y pintura en {site.area}.</p>
-            <p className="mt-1">
-              Horario: {site.hours.opens} – {site.hours.closes} ({site.hours.days})
-            </p>
+            <p className="mt-1">{hoursText}.</p>
+            <p className="mt-1">{site.hours.flexible}.</p>
           </div>
 
           <div className="md:col-span-3 md:col-start-7">

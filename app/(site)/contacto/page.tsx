@@ -3,10 +3,9 @@ import { CtaButtons } from "@/components/CtaButtons";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-import { Pendiente } from "@/components/Pendiente";
 import { CurveMark, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
 import { breadcrumbSchema } from "@/lib/schema";
-import { site, whatsappHref } from "@/lib/site";
+import { hoursText, site, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Contacto · Presupuesto gratis en Valencia | YordeK" },
@@ -95,26 +94,15 @@ export default function ContactoPage() {
                 <a href={`mailto:${site.email}`} className="break-all hover:text-brand">{site.email}</a>
               </InfoRow>
               <InfoRow label="Horario">
-                {site.hours.opens} – {site.hours.closes}
-                {site.hours.days.startsWith("[") ? (
-                  <>
-                    {" "}
-                    <Pendiente>días de la semana</Pendiente>
-                  </>
-                ) : (
-                  `, ${site.hours.days}`
-                )}
+                {hoursText}
+                <span className="mt-1 block text-body text-ink-soft">{site.hours.flexible}.</span>
               </InfoRow>
               <InfoRow label="Zona">
                 <span className="flex items-center gap-2">
                   <PinIcon className="size-5 text-brand" />
                   {site.area}
                 </span>
-                {site.municipalities.length === 0 && (
-                  <span className="mt-1 block">
-                    <Pendiente>lista de municipios</Pendiente>
-                  </span>
-                )}
+                <span className="mt-1 block text-body text-ink-soft">{site.coverage}.</span>
               </InfoRow>
             </dl>
 

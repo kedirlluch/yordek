@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
 import { photos } from "@/lib/photos";
 
@@ -72,7 +71,7 @@ const content: ServiceContent = {
     },
     {
       title: "Pintar",
-      text: "Primero techos y después paredes, con las manos necesarias para que el color quede uniforme.",
+      text: "Techos y paredes, con las manos necesarias para que el color quede uniforme.",
     },
     {
       title: "Recoger y limpiar",
@@ -117,16 +116,11 @@ const content: ServiceContent = {
     },
     {
       q: "¿Hay que sacar los muebles para pintar?",
-      a: <Pendiente>si se pinta con los muebles dentro y qué tiene que hacer el cliente</Pendiente>,
+      a: "Para pintar, no. Cubrimos los muebles y el suelo y puedes seguir viviendo en casa. Solo si antes hay que lijar mucho (por gotelé o pasta) conviene sacarlos de la habitación por el polvo. Te lo decimos en la visita.",
     },
     {
       q: "¿Cuántos días se tarda en pintar un piso?",
-      a: (
-        <>
-          Depende de las habitaciones, de los techos y de cuánto haya que reparar. En la visita te decimos los días.{" "}
-          <Pendiente>plazo típico, p. ej. piso de 3 habitaciones</Pendiente>
-        </>
-      ),
+      a: "Depende de las habitaciones, de los techos y de cuánto haya que reparar. En la visita te damos una estimación aproximada de los días; hay detalles que solo aparecen al empezar el trabajo.",
     },
     {
       q: "¿Pintáis también los techos?",

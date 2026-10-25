@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LegalData, LegalPage } from "@/components/LegalPage";
-import { Pendiente } from "@/components/Pendiente";
+import { LegalRow, LegalPage } from "@/components/LegalPage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,9 +20,9 @@ export default function PrivacidadPage() {
 
       <h2>1. Responsable del tratamiento</h2>
       <ul>
-        <li>Titular: <LegalData value={legal.holder} label="nombre y apellidos o razón social" /></li>
-        <li>NIF/CIF: <LegalData value={legal.taxId} label="NIF o CIF" /></li>
-        <li>Domicilio: <LegalData value={legal.address} label="domicilio fiscal" /></li>
+        <LegalRow name="Titular" value={legal.holder} label="nombre y apellidos o razón social" />
+        <LegalRow name="NIF/CIF" value={legal.taxId} label="NIF o CIF" />
+        <LegalRow name="Domicilio" value={legal.address} label="domicilio fiscal" />
         <li>Email de contacto: <a href={`mailto:${site.email}`}>{site.email}</a></li>
       </ul>
 
@@ -62,8 +61,8 @@ export default function PrivacidadPage() {
 
       <h2>4. Cuánto tiempo los guardamos</h2>
       <p>
-        Si no llegas a contratar, guardamos tus datos el tiempo necesario para atender tu solicitud y un máximo de{" "}
-        <Pendiente>plazo, p. ej. 12 meses</Pendiente>. Si contratas, los conservamos durante los plazos que exige la
+        Si no llegas a contratar, guardamos tus datos el tiempo necesario para atender tu solicitud y un máximo de 12
+        meses. Si contratas, los conservamos durante los plazos que exige la
         ley, como los fiscales y mercantiles.
       </p>
 
@@ -71,8 +70,8 @@ export default function PrivacidadPage() {
       <p>No vendemos ni cedemos tus datos. Los tratan, por cuenta nuestra, estos proveedores:</p>
       <ul>
         <li>
-          <strong>Web3Forms</strong>, que recibe el formulario y nos lo envía por email.{" "}
-          <Pendiente>confirmar la ubicación de sus servidores y el mecanismo de transferencia internacional</Pendiente>
+          <strong>Web3Forms</strong>, que recibe el formulario y nos lo envía por email. Sus servidores están en
+          Estados Unidos.
         </li>
         <li>
           <strong>Google</strong> (Tag Manager, Analytics y Google Ads), solo si aceptas las cookies de análisis o

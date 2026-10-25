@@ -21,7 +21,7 @@ export default function GraciasPage() {
       </span>
       <h1 className="head mt-6">Recibido. Te llamamos para concertar la visita</h1>
       <p className="mt-6 text-lead">
-        Te llamamos en horario de {site.hours.opens} a {site.hours.closes}. Si ves una llamada del{" "}
+        Te llamamos {site.hours.days}, de {site.hours.opens.replace(/^0/, "")} a {site.hours.closes}. Si ves una llamada del{" "}
         {site.phone.display} o del {site.phoneSecondary.display}, somos nosotros.
       </p>
 

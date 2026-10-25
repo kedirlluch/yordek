@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
 import { beforeAfterPairs, photos } from "@/lib/photos";
 
@@ -66,7 +65,7 @@ const content: ServiceContent = {
     },
     {
       title: "Quitamos el gotelé",
-      text: <Pendiente>método: rascado, tendido de pasta encima o según el caso</Pendiente>,
+      text: "Según cómo esté la pared y el acabado que buscas, lo cubrimos con pasta o lo retiramos por completo. Lo decidimos contigo en la visita.",
     },
     {
       title: "Alisamos y lijamos",
@@ -120,24 +119,19 @@ const content: ServiceContent = {
     },
     {
       q: "¿Rascáis el gotelé o lo tapáis con pasta?",
-      a: <Pendiente>método para quitar el gotelé y cuándo se usa cada uno</Pendiente>,
+      a: "Depende del estado de la pared y del acabado que buscas. A veces basta con tender pasta encima y otras hay que quitarlo todo. En la visita lo vemos y te explicamos qué conviene en tu caso antes de darte el precio.",
     },
     {
       q: "¿Puedo seguir viviendo en casa mientras quitáis el gotelé?",
-      a: <Pendiente>si se trabaja con la casa habitada y amueblada</Pendiente>,
+      a: "Sí. Lijamos con máquina y aspirador y cubrimos los muebles, pero si el gotelé es grueso o hay que lijar paredes enteras se levanta polvo igualmente. En ese caso es mejor sacar los muebles de la habitación en la que trabajamos. En la visita te decimos qué conviene en tu caso.",
     },
     {
       q: "¿Cuánto se tarda en quitar el gotelé de un piso?",
-      a: (
-        <>
-          Depende de los metros de pared y de lo que aparezca debajo del gotelé. En la visita te decimos los días
-          exactos. <Pendiente>plazo típico, p. ej. piso de 80 m²</Pendiente>
-        </>
-      ),
+      a: "Depende de los metros de pared y de lo que aparezca debajo del gotelé. En la visita te damos una estimación aproximada de los días; hay detalles que solo se ven una vez empezado el trabajo.",
     },
     {
       q: "¿Quitáis también el gotelé del techo?",
-      a: <Pendiente>si se quita el gotelé de los techos</Pendiente>,
+      a: "Sí. Quitamos el gotelé de paredes y techos, sea del tipo que sea. En la visita vemos cómo está y lo incluimos en el presupuesto.",
     },
     {
       q: "Quitar el gotelé, ¿ensucia mucho?",

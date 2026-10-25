@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
 import { photos } from "@/lib/photos";
 
@@ -30,7 +29,7 @@ const content: ServiceContent = {
     },
     {
       title: "Los colores de tu marca",
-      text: "Dinos el código de color o tráenos una muestra y lo pintamos igual.",
+      text: "Dinos el código de color o tráenos una muestra y buscamos la pintura que más se acerque.",
     },
     {
       title: "Reparar lo que dejó el anterior negocio",
@@ -59,12 +58,7 @@ const content: ServiceContent = {
     },
     {
       title: "Fechas de trabajo",
-      text: (
-        <>
-          Te decimos cuántos días necesitamos para que encajes la apertura y los demás oficios.{" "}
-          <Pendiente>si se puede trabajar fuera del horario de apertura o en fin de semana</Pendiente>
-        </>
-      ),
+      text: "Te decimos cuántos días necesitamos para que encajes la apertura y los demás oficios. Si hace falta, trabajamos fuera de tu horario o en fin de semana, con cita.",
     },
     {
       title: "Protección",
@@ -117,7 +111,7 @@ const content: ServiceContent = {
   faqs: [
     {
       q: "¿Podéis pintar fuera del horario de apertura?",
-      a: <Pendiente>si se trabaja por la tarde, de noche o en fin de semana</Pendiente>,
+      a: "Sí. Con cita previa podemos trabajar fuera de tu horario de apertura, también en fin de semana. Lo cuadramos en la visita o por WhatsApp.",
     },
     {
       q: "Voy a abrir un negocio. ¿Cuándo os llamo?",
@@ -129,11 +123,11 @@ const content: ServiceContent = {
     },
     {
       q: "¿Podéis pintar con los colores de mi marca?",
-      a: "Sí. Pásanos el código de color o una muestra y lo pintamos igual.",
+      a: "Sí. Pásanos el código de color o una muestra y buscamos la pintura que más se acerque a tu color.",
     },
     {
       q: "¿Hacéis el trabajo con el negocio abierto?",
-      a: <Pendiente>si se puede pintar por zonas con el negocio funcionando</Pendiente>,
+      a: "Sí. Podemos pintar por zonas para que el negocio siga funcionando, protegiendo y despejando cada zona antes de empezar.",
     },
   ],
 

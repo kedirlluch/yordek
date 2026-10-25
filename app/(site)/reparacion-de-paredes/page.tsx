@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Pendiente } from "@/components/Pendiente";
 import { ServicePage, type ServiceContent } from "@/components/ServicePage";
 import { beforeAfterPairs, photos } from "@/lib/photos";
 
@@ -114,7 +113,7 @@ const content: ServiceContent = {
     },
     {
       q: "¿Las grietas vuelven a salir?",
-      a: "Una fisura de la pintura o del yeso, bien reparada, no tiene por qué volver. Si vemos que una grieta puede venir de un problema del edificio, te lo diremos antes de taparla.",
+      a: "Una fisura de la pintura o del yeso, bien reparada, no tiene por qué volver. Si la grieta es estructural o la causa algo externo (movimientos del edificio, humedad, vibraciones), volverá a salir mientras no se solucione el origen. Si lo vemos, te lo diremos antes de taparla.",
     },
     {
       q: "Dejo un piso de alquiler. ¿Podéis tapar los agujeros y repintar?",
@@ -122,11 +121,11 @@ const content: ServiceContent = {
     },
     {
       q: "¿Arregláis paredes con humedad?",
-      a: <Pendiente>si se reparan humedades y en qué casos</Pendiente>,
+      a: "Reparamos y pintamos la pared dañada, pero antes hay que solucionar lo que causa la humedad (una fuga, una filtración de la comunidad…). Si no, la mancha vuelve a salir.",
     },
     {
       q: "¿Venís para una reparación pequeña?",
-      a: <Pendiente>si hay trabajo mínimo</Pendiente>,
+      a: "Sí. Para reparaciones pequeñas, mándanos fotos por WhatsApp y te decimos si podemos ir y cuándo.",
     },
   ],
 

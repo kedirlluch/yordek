@@ -1,4 +1,4 @@
-import { Pendiente } from "@/components/Pendiente";
+import { isProduction, Pendiente } from "@/components/Pendiente";
 
 // Maqueta de texto largo para las páginas legales.
 export function LegalPage({
@@ -21,7 +21,10 @@ export function LegalPage({
   );
 }
 
-// Dato fiscal: muestra el valor o el marcador si aún no está en lib/site.ts.
-export function LegalData({ value, label }: { value: string | null; label: string }) {
-  return value ? <>{value}</> : <Pendiente>{label}</Pendiente>;
+// Fila de dato fiscal. Si aún no está en lib/site.ts, sale el marcador en local y en las
+// previews, y en producción la fila no aparece (de momento no hay titular fiscal: PENDIENTES.md).
+export function LegalRow({ name, value, label }: { name: string; value: string | null; label: string }) {
+  if (value) return <li>{name}: {value}</li>;
+  if (isProduction) return null;
+  return <li>{name}: <Pendiente>{label}</Pendiente></li>;
 }
