@@ -9,7 +9,7 @@ import type { ServiceSlug } from "@/lib/site";
 export const photos = {
   // Las de /img/generadas/ son de IA (ambiente, ver FOTOS.md): no son trabajos nuestros, nunca en antes/después.
   homeHero: { src: "/img/generadas/home-hero.webp", alt: "Pared lisa recién pintada de blanco, con una silla y suelo de terrazo" },
-  quitarGotele: { src: "/img/prueba/quitar-gotele-hero.webp", alt: "Pared con gotelé y la parte ya alisada" },
+  quitarGotele: { src: "/img/generadas/quitar-gotele.webp", alt: "Pared a medio quitar el gotelé: la mitad con relieve y la otra mitad ya lisa y pintada" },
   alisado: { src: "/img/generadas/alisado.webp", alt: "Pared y techo alisados y pintados, vistos con luz lateral" },
   pinturaPisos: { src: "/img/generadas/salon-pintado.webp", alt: "Salón con las paredes recién pintadas en un tono claro" },
   pinturaLocales: { src: "/img/generadas/local-pintado.webp", alt: "Local vacío recién pintado de blanco, con una pared en azul" },
@@ -34,17 +34,18 @@ export const servicePhotos = {
   "reparacion-de-paredes": photos.reparacion,
 } satisfies Record<ServiceSlug, PhotoSrc>;
 
+// Pares generados con IA: llevan "imagen ilustrativa" en el pie hasta tener fotos reales de trabajos propios.
 export const beforeAfterPairs: BeforeAfterPair[] = [
   {
-    before: "/img/prueba/antes-gotele.webp",
-    after: "/img/prueba/despues-gotele.webp",
+    before: "/img/generadas/antes-gotele.webp",
+    after: "/img/generadas/despues-gotele.webp",
     place: "pared con gotelé alisada",
-    caption: "Quitar gotelé: de pared con relieve a pared lisa.",
+    caption: "Quitar gotelé: de pared con relieve a pared lisa (imagen ilustrativa).",
   },
   {
-    before: "/img/prueba/antes-grieta.webp",
-    after: "/img/prueba/despues-grieta.webp",
+    before: "/img/generadas/antes-grieta.webp",
+    after: "/img/generadas/despues-grieta.webp",
     place: "pared con grietas reparada y pintada",
-    caption: "Reparación: grietas y desconchones tapados y pared pintada.",
+    caption: "Reparación: grietas y desconchones tapados y pared pintada (imagen ilustrativa).",
   },
 ];

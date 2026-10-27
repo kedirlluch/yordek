@@ -60,10 +60,15 @@ Imágenes de **ambiente** generadas con IA (Higgsfield, GPT Image 2.5, 28/10/202
 | `reparacion.png` → `reparacion` | Pared con grietas y agujeros plastecidos | Hero de `/reparacion-de-paredes/` | 28/10/2026 |
 | `pared-lisa.png` → `pared-lisa` | Pared blanca con hornacina | "Qué incluye" de los servicios, `/nosotros/`, CTA final de `/presupuesto-quitar-gotele/` | 28/10/2026 |
 | `comedor.png` → `comedor` | Comedor recién pintado | CTA final de `/presupuesto-pintura/` | 28/10/2026 |
+| `quitar-gotele.png` → `quitar-gotele` | Pared a medio quitar: mitad gotelé, mitad lisa | Hero de `/quitar-gotele/` y `/presupuesto-quitar-gotele/` | 28/10/2026 |
+| `antes-gotele.png` + `despues-gotele.png` | Par antes/después de gotelé (el después es una edición del antes, mismo encuadre) | Home, `/quitar-gotele/`, `/presupuesto-quitar-gotele/` | 28/10/2026 |
+| `antes-grieta.png` + `despues-grieta.png` | Par antes/después de grietas (ídem) | Home y `/reparacion-de-paredes/` | 28/10/2026 |
+
+**Los antes/después generados llevan "(imagen ilustrativa)" en el pie**: presentarlos como trabajos propios sería publicidad engañosa. Al tener pares reales, se sustituyen y se quita esa coletilla en `lib/photos.ts`.
 
 La primera versión del salón, generada por el cliente, queda en `fotos-originales/generadas/salon-pintado-cliente.png`.
 
-**Siguen como prueba (tienen que ser fotos reales):** el hero de `/quitar-gotele/` (pared a medio quitar) y los pares de antes/después.
+Ya no queda ninguna foto de prueba en la web (`public/img/prueba/` no se usa). Lo ideal sigue siendo cambiar las generadas por fotos reales de vuestros trabajos, empezando por los antes/después.
 
 ## Home `/`
 

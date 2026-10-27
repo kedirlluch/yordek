@@ -49,6 +49,11 @@ SLOTS = {
     "pared-lisa": ("generadas", "generadas/pared-lisa.png", 4 / 3, 0.5, 0.5),
     "comedor": ("generadas", "generadas/comedor.png", 4 / 3, 0.5, 0.5),
     "reparacion": ("generadas", "generadas/reparacion.png", 4 / 3, 0.5, 0.5),
+    "quitar-gotele": ("generadas", "generadas/quitar-gotele.png", 4 / 3, 0.5, 0.5),
+    "antes-gotele": ("generadas", "generadas/antes-gotele.png", 4 / 3, 0.5, 0.5),
+    "despues-gotele": ("generadas", "generadas/despues-gotele.png", 4 / 3, 0.5, 0.5),
+    "antes-grieta": ("generadas", "generadas/antes-grieta.png", 4 / 3, 0.5, 0.5),
+    "despues-grieta": ("generadas", "generadas/despues-grieta.png", 4 / 3, 0.5, 0.5),
     # Ambiente (picsum/Unsplash, elegidas por la skill de diseño): interiores, nunca fachadas ni exteriores
     "pared-lisa-hueco": ("prueba", "prueba/picsum-954.jpg", 4 / 3, 0.38, 0.5),
     "local-cuadros": ("prueba", "prueba/picsum-834.jpg", 4 / 3, 0.5, 0.3),
