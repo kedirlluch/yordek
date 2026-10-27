@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { buttonClass } from "@/components/Button";
 import { Logo } from "@/components/Logo";
-import { MenuIcon, PhoneIcon, WhatsAppIcon } from "@/components/icons";
+import { MobileMenu } from "@/components/MobileMenu";
+import { PhoneIcon, WhatsAppIcon } from "@/components/icons";
 import { services, site, whatsappHref } from "@/lib/site";
 
 const navLinks = [
@@ -67,7 +68,7 @@ export function Header() {
           </a>
         </div>
 
-        {/* Móvil: menú sin JS con <details> */}
+        {/* Móvil: menú con <details> (funciona sin JS) */}
         <div className="flex items-center gap-1 lg:hidden">
           <a
             href={site.phone.href}
@@ -77,13 +78,7 @@ export function Header() {
           >
             <PhoneIcon className="size-6" />
           </a>
-          <details className="group">
-            <summary
-              aria-label="Abrir menú"
-              className="grid size-11 cursor-pointer list-none place-items-center rounded-full [&::-webkit-details-marker]:hidden"
-            >
-              <MenuIcon />
-            </summary>
+          <MobileMenu>
             <nav
               aria-label="Menú móvil"
               className="absolute inset-x-0 top-16 hidden bg-white px-4 pb-6 pt-2 group-open:block"
@@ -110,7 +105,7 @@ export function Header() {
                 ))}
               </ul>
             </nav>
-          </details>
+          </MobileMenu>
         </div>
       </div>
     </header>
