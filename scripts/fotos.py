@@ -39,8 +39,16 @@ SLOTS = {
     "despues-grieta": ("prueba", "prueba/pared-blanca-hornacina.jpg", 4 / 3, 0.5, 0.5),
     "antes-gotele": ("prueba", "prueba/pared-gotele.jpg", 4 / 3, 0.5, 0.5),
     "despues-gotele": ("prueba", "prueba/pared-lisa.jpg", 4 / 3, 0.5, 0.5),
-    # Generadas con IA por el cliente (ambiente, nunca como trabajo propio): sin etiqueta de prueba
-    "salon-pintado": ("generadas", "generadas/salon-pintado.png", 4 / 3, 0.55, 0.5),
+    # Generadas con IA (Higgsfield) (ambiente, nunca como trabajo propio): sin etiqueta de prueba
+    "home-hero": ("generadas", "generadas/home-hero.png", 4 / 3, 0.5, 0.5),
+    "salon-pintado": ("generadas", "generadas/salon-pintado.png", 4 / 3, 0.5, 0.5),
+    "local-pintado": ("generadas", "generadas/local-pintado.png", 4 / 3, 0.5, 0.5),
+    "alisado": ("generadas", "generadas/alisado.png", 4 / 3, 0.5, 0.5),
+    "trabajando-vertical": ("generadas", "generadas/trabajando.png", 4 / 5, 0.5, 0.5),
+    "trabajando-cuadrada": ("generadas", "generadas/trabajando.png", 1, 0.5, 0.45),
+    "pared-lisa": ("generadas", "generadas/pared-lisa.png", 4 / 3, 0.5, 0.5),
+    "comedor": ("generadas", "generadas/comedor.png", 4 / 3, 0.5, 0.5),
+    "reparacion": ("generadas", "generadas/reparacion.png", 4 / 3, 0.5, 0.5),
     # Ambiente (picsum/Unsplash, elegidas por la skill de diseño): interiores, nunca fachadas ni exteriores
     "pared-lisa-hueco": ("prueba", "prueba/picsum-954.jpg", 4 / 3, 0.38, 0.5),
     "local-cuadros": ("prueba", "prueba/picsum-834.jpg", 4 / 3, 0.5, 0.3),

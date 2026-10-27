@@ -48,11 +48,22 @@ Las cinco `picsum-*` (25/10/2026) las eligió la skill de diseño para dar ambie
 
 ## Imágenes generadas con IA (en la web, sin etiqueta de prueba)
 
-Imágenes de **ambiente** generadas por el cliente con los prompts de diseño. No son trabajos propios: nunca se usan en antes/después ni como prueba de un trabajo. Originales en `fotos-originales/generadas/` (no se suben a git); se procesan con `scripts/fotos.py` y salen en `public/img/generadas/`.
+Imágenes de **ambiente** generadas con IA (Higgsfield, GPT Image 2.5, 28/10/2026). No son trabajos propios: nunca se usan en antes/después ni como prueba de un trabajo. Originales en `fotos-originales/generadas/` (no se suben a git); se procesan con `scripts/fotos.py` y salen en `public/img/generadas/`.
 
 | Archivo | Qué es | Dónde | Fecha |
 |---|---|---|---|
-| `salon-pintado.png` → `salon-pintado` | Salón recién pintado, suelo de terrazo (prompt 2) | Hero de `/pintura-de-pisos/` y de `/presupuesto-pintura/` | 25/10/2026 |
+| `home-hero.png` → `home-hero` | Pared lisa blanca con una silla, suelo de terrazo | Hero de la Home | 28/10/2026 |
+| `salon-pintado.png` → `salon-pintado` | Salón recién pintado, suelo de terrazo | Hero de `/pintura-de-pisos/` y de `/presupuesto-pintura/` | 28/10/2026 |
+| `trabajando.png` → `trabajando-vertical`, `trabajando-cuadrada` | Pintor de espaldas con rodillo y alargador | Home "Quiénes somos" y `/nosotros/` | 28/10/2026 |
+| `local-pintado.png` → `local-pintado` | Local vacío en blanco con pared azul | Hero de `/pintura-de-locales-comerciales/` | 28/10/2026 |
+| `alisado.png` → `alisado` | Pared y techo alisados con luz rasante | Hero de `/alisado-de-paredes/` | 28/10/2026 |
+| `reparacion.png` → `reparacion` | Pared con grietas y agujeros plastecidos | Hero de `/reparacion-de-paredes/` | 28/10/2026 |
+| `pared-lisa.png` → `pared-lisa` | Pared blanca con hornacina | "Qué incluye" de los servicios, `/nosotros/`, CTA final de `/presupuesto-quitar-gotele/` | 28/10/2026 |
+| `comedor.png` → `comedor` | Comedor recién pintado | CTA final de `/presupuesto-pintura/` | 28/10/2026 |
+
+La primera versión del salón, generada por el cliente, queda en `fotos-originales/generadas/salon-pintado-cliente.png`.
+
+**Siguen como prueba (tienen que ser fotos reales):** el hero de `/quitar-gotele/` (pared a medio quitar) y los pares de antes/después.
 
 ## Home `/`
 
