@@ -2,7 +2,7 @@
 // GTM sigue preparado por si algún día se usa, pero solo uno de los dos: con los dos, Ads contaría doble.
 
 export const tracking = {
-  adsId: "[AW-ID]", // p. ej. "AW-123456789"
+  adsId: "AW-18524763979",
   // Etiqueta de cada conversión de Ads (lo que va después de la barra en send_to: 'AW-123456789/AbC-D_efG123').
   conversions: {
     click_llamar: "[ETIQUETA]",
