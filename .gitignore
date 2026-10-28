@@ -11,3 +11,6 @@ fotos-originales/
 
 # Capturas e informes de la skill de diseño
 .taste-skill/
+
+# Caché de Python (scripts/fotos.py)
+__pycache__/
